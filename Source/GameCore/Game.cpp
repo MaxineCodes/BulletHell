@@ -30,6 +30,11 @@ void Game::initialize(GameSettings& settings)
     VideoMode = sf::VideoMode(m_windowWidth, m_windowHeight);
     GameWindow = std::make_unique<sf::RenderWindow>(VideoMode, m_windowTitle);
 
+    // Initialize the game manager
+    // which then also loads all the resources.
+    m_resourceManager = std::make_unique<ResourceManager>();
+    m_resourceManager->initialize();
+
     mainMenu();
     start();
     initializeGameloop();

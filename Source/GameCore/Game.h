@@ -65,6 +65,7 @@
 #include "Entity/Entity.h"
 #include "EntityList.h"
 #include "../Settings/GameSettings.h"
+#include "ResourceManager.h"
 
 
 // Game instance
@@ -78,6 +79,7 @@ private:
     std::unique_ptr<sf::RenderWindow> GameWindow;
     sf::VideoMode VideoMode;
     
+    std::unique_ptr<ResourceManager> m_resourceManager;
     EntityList gameEntityList;
 
 public:
