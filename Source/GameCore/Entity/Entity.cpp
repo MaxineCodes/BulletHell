@@ -1,16 +1,5 @@
 #include "Entity.h"
 
-
-void Entity::init()
-{
-	std::cout << "Entity::Init()" << std::endl;
-}
-
-void Entity::loadResources()
-{
-	std::cout << "Entity::loadResources()" << std::endl;
-}
-
 void Entity::update(float deltaTime)
 {
 	std::cout << "Entity::Update()" << std::endl;
@@ -37,7 +26,7 @@ Vector2 Entity::getPosition()
 	return m_position;
 }
 
-void Entity::Delete() 
+bool Entity::shouldBeDestroyed()
 {
-	std::cout << "Entity::Delete()" << std::endl;
+	return false;
 }

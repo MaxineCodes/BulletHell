@@ -18,7 +18,7 @@ Player::Player(int windowWidth, int windowHeight, EntityList *gameEntityList, Re
 void Player::init()
 {
 	// Set player sprite scale and set origin aka pivot to center
-	m_playerSprite.setOrigin(32 / 2, 32 / 2 + 32 / 6);
+	m_playerSprite.setOrigin(float(32 / 2), float(32 / 2 + 32 / 6));
 	m_playerSprite.setScale(m_playerScale, m_playerScale);
 
 	// Set starting position of player
@@ -67,7 +67,6 @@ void Player::update(float deltaTime)
 	{
 		movement(m_slowSpeed, m_gameWindowWidth, m_gameWindowHeight, deltaTime);
 		m_playerSprite.setTexture(m_hitBoxTexture);
-		//hitBoxSprite.setPosition(position.x, position.y);
 	}
 	else
 	{
@@ -81,9 +80,9 @@ void Player::update(float deltaTime)
 	}
 }
 
-void Player::Delete()
+bool Player::shouldBeDestroyed()
 {
-
+	return false;
 }
 
 // Load player resources

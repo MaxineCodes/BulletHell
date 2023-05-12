@@ -44,14 +44,11 @@ public:
 
 	~Bullet() { std::cout << "Bullet destroyed" << std::endl; }
 
-	void init();
 	void update(float deltaTime);
+	bool shouldBeDestroyed();
+
 	sf::Sprite getSprite();
 	std::string getType();
 	const int getRenderLayer();
 	Vector2 getPosition();
-	void Delete();
-
-private:
-	void loadResources();
 };

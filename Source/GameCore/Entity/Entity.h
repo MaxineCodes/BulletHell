@@ -34,15 +34,12 @@ public:
 	~Entity() {}
 
 	virtual void update(float deltaTime);
+	virtual bool shouldBeDestroyed();
+
 	virtual sf::Sprite getSprite();
 	virtual std::string getType();
 	virtual const int getRenderLayer();
 	virtual Vector2 getPosition();
-	virtual void Delete();
-
-private:
-	virtual void init();
-	virtual void loadResources();
 };
 
 // Sub classes includes

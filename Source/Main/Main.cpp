@@ -46,3 +46,15 @@ int main()
 
     return 0;
 }
+
+
+/*
+
+SessionState:
+Storing data on the session such as player lives and score
+
+Level
+
+
+
+*/

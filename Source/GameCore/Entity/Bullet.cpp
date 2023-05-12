@@ -6,22 +6,16 @@ Bullet::Bullet(Vector2 startPosition, Vector2 startDirection, float speed, float
 	std::cout << "Bullet Created" << std::endl;
 
 	resourceManager_ptr = resourceManager;
-	m_bulletTexture = resourceManager_ptr->getTexture(textureName);
-	m_bulletSprite.setTexture(m_bulletTexture);
-	m_bulletSprite.setPosition(startPosition.x, startPosition.y);
 	m_direction = startDirection;
 	m_speed = speed;
 	m_size = size;
 
-	init();
-}
+	m_bulletTexture = resourceManager_ptr->getTexture(textureName);
+	m_bulletSprite.setTexture(m_bulletTexture);
 
-void Bullet::init()
-{
 	m_bulletSprite.setOrigin(32 / 2, 32 / 2 + 32 / 6);
 	m_bulletSprite.setScale(m_size, m_size);
-
-	loadResources();
+	m_bulletSprite.setPosition(startPosition.x, startPosition.y);
 }
 
 void Bullet::update(float deltaTime)
@@ -58,16 +52,10 @@ Vector2 Bullet::getPosition()
 	return blep;
 }
 
-void Bullet::Delete()
+bool Bullet::shouldBeDestroyed()
 {
-	std::cout << "Bullet::Delete()" << std::endl;
-}
+	if (m_position.y < -100.0f)
+		return true;
 
-void Bullet::loadResources()
-{
-	//if (!m_bulletTexture.loadFromFile("Res/BulletPointBlue.png"))
-	//{
-	//	std::cout << "Texture not found" << std::endl;
-	//}
-	//m_bulletSprite.setTexture(m_bulletTexture);
+	return false;
 }

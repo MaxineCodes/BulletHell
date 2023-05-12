@@ -145,6 +145,7 @@
     <ClCompile Include="Source\GameCore\Game.cpp" />
     <ClCompile Include="Source\Main\Main.cpp" />
     <ClCompile Include="Source\GameCore\Entity\Player.cpp" />
+    <ClCompile Include="Source\GameCore\Rendering\SpriteSwapper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\GameCore\Rendering\Renderer.h" />
@@ -157,6 +158,7 @@
     <ClInclude Include="Source\GameCore\GameMath.h" />
     <ClInclude Include="Source\GameCore\Entity\Player.h" />
     <ClInclude Include="Source\GameCore\Game.h" />
+    <ClInclude Include="Source\GameCore\Rendering\SpriteSwapper.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Res\BulletPointBlue.png" />

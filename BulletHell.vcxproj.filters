@@ -45,6 +45,9 @@
     <ClCompile Include="Source\GameCore\Rendering\Renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\GameCore\Rendering\SpriteSwapper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\GameCore\Game.h">
@@ -75,6 +78,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\GameCore\Rendering\Renderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameCore\Rendering\SpriteSwapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

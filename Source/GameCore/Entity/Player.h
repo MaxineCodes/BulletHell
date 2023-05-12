@@ -24,7 +24,6 @@ public:
 	Vector2 m_position = Vector2(0.0f, 0.0f);
 
 private:
-
 	EntityList* gameEntityList_ptr;
 	ResourceManager* resourceManager_ptr;
 
@@ -54,19 +53,20 @@ private:
 	bool m_slowmode = false;
 	bool m_shooting = false;
 
-// Public functions
 public:
 	Player(int windowWidth, int windowHeight, EntityList *gameEntityList, ResourceManager *resourceManager);
-	void init();
+	~Player() {}
+
+	void update(float deltaTime);
+	bool shouldBeDestroyed();
+
 	sf::Sprite getSprite();
 	std::string getType();
 	const int getRenderLayer();
 	Vector2 getPosition();
-	void update(float deltaTime);
-	void Delete();
 
-//Private functions
 private:
+	void init();
 	void loadResources();
 	sf::Time shoot();
 	void movement(float SPEED, int WINDOWWIDTH, int WINDOWHEIGHT, float deltaTime);

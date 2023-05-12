@@ -20,13 +20,12 @@ private:
 	std::vector<int> m_deleteList;
 
 public:
-	EntityList() {};
+	EntityList() {}
+	~EntityList() {}
+
 	void updateAllEntities(float deltaTime);
 	void lateUpdateAllEntities(float deltaTime);
-	void renderAllEntities();
+
 	void add(std::shared_ptr<Entity> entity);
 	std::vector<std::shared_ptr<Entity>> getList();
-
-private:
-	void lateUpdateAllEntities();
 };
