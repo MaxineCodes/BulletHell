@@ -13,6 +13,7 @@
 #include <memory>
 #include <SFML/Graphics.hpp>
 
+#include "../ResourceManagement/ResourceManager.h"
 #include "../GameMath.h"
 
 
@@ -20,6 +21,7 @@
 class Entity
 {
 public:
+	const int renderLayer = 0;
 	std::string m_type = "Entity";
 	Vector2 m_position = Vector2(0.0f, 0.0f);
 

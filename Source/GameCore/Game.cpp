@@ -29,12 +29,13 @@ void Game::initialize(GameSettings& settings)
     // Create Render Window
     VideoMode = sf::VideoMode(m_windowWidth, m_windowHeight);
     GameWindow = std::make_unique<sf::RenderWindow>(VideoMode, m_windowTitle);
+    m_renderLayers = std::make_unique<RenderLayers>(*GameWindow, m_windowWidth, m_windowHeight);
 
     // Initialize the game manager
-    // which then also loads all the resources.
-    m_resourceManager = std::make_unique<ResourceManager>();
-    m_resourceManager->initialize();
+    if (!m_resourceManager.loadResources())
+        std::cout << "Loading resources failed" << std::endl;
 
+    // Start the game related stuff
     mainMenu();
     start();
     initializeGameloop();
@@ -51,6 +52,6 @@ void Game::start()
 {
     std::cout << "Game::start()" << std::endl;
 
-    auto player = std::make_shared<Player>(m_windowWidth, m_windowHeight, &gameEntityList);
-    gameEntityList.add(player);
+    auto player = std::make_shared<Player>(m_windowWidth, m_windowHeight, &m_gameEntityList, &m_resourceManager);
+    m_gameEntityList.add(player);
 }

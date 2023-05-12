@@ -1,12 +1,13 @@
 #include "Bullet.h"
 
 // Constructor
-Bullet::Bullet(Vector2 startPosition, Vector2 startDirection, float speed, float size, sf::Texture& texture)
+Bullet::Bullet(Vector2 startPosition, Vector2 startDirection, float speed, float size, ResourceManager* resourceManager, const char* textureName)
 {
-	std::cout << "Bullet::Bullet" << std::endl;
+	std::cout << "Bullet Created" << std::endl;
 
-	//m_bulletTexture = texture;
-	//m_bulletSprite.setTexture(texture);
+	resourceManager_ptr = resourceManager;
+	m_bulletTexture = resourceManager_ptr->getTexture(textureName);
+	m_bulletSprite.setTexture(m_bulletTexture);
 	m_bulletSprite.setPosition(startPosition.x, startPosition.y);
 	m_direction = startDirection;
 	m_speed = speed;
@@ -59,9 +60,9 @@ void Bullet::Delete()
 
 void Bullet::loadResources()
 {
-	if (!m_bulletTexture.loadFromFile("Res/BulletPointBlue.png"))
-	{
-		std::cout << "Texture not found" << std::endl;
-	}
-	m_bulletSprite.setTexture(m_bulletTexture);
+	//if (!m_bulletTexture.loadFromFile("Res/BulletPointBlue.png"))
+	//{
+	//	std::cout << "Texture not found" << std::endl;
+	//}
+	//m_bulletSprite.setTexture(m_bulletTexture);
 }

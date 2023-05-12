@@ -36,10 +36,16 @@
     <ClCompile Include="Source\Settings\GameSettings.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GameCore\ResourceManager.cpp">
+    <ClCompile Include="Source\GameCore\ResourceManagement\ResourceManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\GameCore\EntityList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameCore\ResourceManagement\TextureHolder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameCore\Rendering\RenderLayers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -62,10 +68,16 @@
     <ClInclude Include="Source\Settings\GameSettings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GameCore\ResourceManager.h">
+    <ClInclude Include="Source\GameCore\ResourceManagement\ResourceManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\GameCore\EntityList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameCore\ResourceManagement\TextureHolder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameCore\Rendering\RenderLayers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

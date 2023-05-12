@@ -62,10 +62,11 @@
 #include <memory>
 #include <SFML/Graphics.hpp>
 
+#include "ResourceManagement/ResourceManager.h"
 #include "Entity/Entity.h"
 #include "EntityList.h"
 #include "../Settings/GameSettings.h"
-#include "ResourceManager.h"
+#include "Rendering/RenderLayers.h"
 
 
 // Game instance
@@ -78,9 +79,11 @@ private:
 
     std::unique_ptr<sf::RenderWindow> GameWindow;
     sf::VideoMode VideoMode;
+
+    std::unique_ptr<RenderLayers> m_renderLayers;
     
-    std::unique_ptr<ResourceManager> m_resourceManager;
-    EntityList gameEntityList;
+    ResourceManager m_resourceManager;
+    EntityList m_gameEntityList;
 
 public:
     Game(GameSettings& settings);

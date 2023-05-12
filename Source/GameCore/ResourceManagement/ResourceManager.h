@@ -11,31 +11,22 @@
 #pragma once
 
 #include <filesystem>
-#include <iostream>
-#include <memory>
-#include <vector>
-#include <string>
-#include <SFML/Graphics.hpp>
-//#include <SFML/Audio.hpp>
+
+#include "TextureHolder.h"
+
 
 class ResourceManager
 {
 private:
 	std::string m_resourceDirectory = "Res/";
 
-	std::map<std::string, sf::Texture> m_textureMap;
-	//std::map<std::string, sf::Sound>   soundMap;
+	TextureHolder m_textureHolder;
 	
 public:
 	ResourceManager() {}
 	~ResourceManager() {}
-	void initialize();
 
-private:
 	bool loadResources();
-	bool addTexture(std::string& fileName, std::string& filePath);
 
-public:
-	sf::Texture getTexture(std::string& textureName);
+	sf::Texture& getTexture(const char* textureName);
 };
-

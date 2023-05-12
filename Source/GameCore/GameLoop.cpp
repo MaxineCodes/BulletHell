@@ -45,7 +45,7 @@ void Game::update(float deltaTime)
         }
     }
 
-    gameEntityList.updateAllEntities(deltaTime);
+    m_gameEntityList.updateAllEntities(deltaTime);
 }
 
 
@@ -61,7 +61,7 @@ void Game::render()
     GameWindow->clear(sf::Color::Black);
 
     // Render all entities
-    for (auto entity : gameEntityList.getList())
+    for (auto entity : m_gameEntityList.getList())
     {
         GameWindow->draw(entity->getSprite());
     }

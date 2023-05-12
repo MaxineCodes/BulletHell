@@ -19,18 +19,21 @@ class EntityList;
 class Player : public Entity
 {
 public:
-
+	const int renderLayer = 1;
 	std::string m_type = "Player";
 	Vector2 m_position = Vector2(0.0f, 0.0f);
 
 private:
+
+	EntityList* gameEntityList_ptr;
+	ResourceManager* resourceManager_ptr;
 
 	const sf::Time m_shootDelay = sf::milliseconds(10);
 	const float m_playerScale = 1.5f;
 	const float m_hitboxSpriteScale = 3.0f;
 	const float m_normalSpeed = 0.055f;
 	const float m_slowSpeed = 0.015f;
-	const float m_wallpadding = 0.0f;//15.0f;
+	const float m_wallpadding = 15.0f;//15.0f;
 
 	sf::Sprite m_playerSprite;
 
@@ -43,8 +46,6 @@ private:
 	sf::Time elapsedTime;
 	sf::Time frameTime;
 
-	EntityList* m_gameEntityList;
-
 	int m_gameWindowWidth;
 	int m_gameWindowHeight;
 
@@ -55,7 +56,7 @@ private:
 
 // Public functions
 public:
-	Player(int windowWidth, int windowHeight, EntityList *gameEntityList);
+	Player(int windowWidth, int windowHeight, EntityList *gameEntityList, ResourceManager *resourceManager);
 	void init();
 	sf::Sprite getSprite();
 	std::string getType();
