@@ -16,10 +16,6 @@ Game::Game(GameSettings& settings)
     initialize(settings);
 }
 
-Game::~Game()
-{
-
-}
 
 // Initializes the game
 void Game::initialize(GameSettings& settings)
@@ -28,10 +24,12 @@ void Game::initialize(GameSettings& settings)
 
     // Create Render Window
     VideoMode = sf::VideoMode(m_windowWidth, m_windowHeight);
-    GameWindow = std::make_unique<sf::RenderWindow>(VideoMode, m_windowTitle);
-    m_renderLayers = std::make_unique<RenderLayers>(*GameWindow, m_windowWidth, m_windowHeight);
+    GameWindow = std::make_shared<sf::RenderWindow>(VideoMode, m_windowTitle);
 
-    // Initialize the game manager
+    // Initialize the renderer
+    m_gameRenderer = std::make_unique<Renderer>(&m_gameEntityList, GameWindow, m_windowWidth, m_windowHeight);
+
+    // Initialize the resource manager
     if (!m_resourceManager.loadResources())
         std::cout << "Loading resources failed" << std::endl;
 
@@ -41,11 +39,13 @@ void Game::initialize(GameSettings& settings)
     initializeGameloop();
 }
 
+
 // Fancy main menu :)
 void Game::mainMenu()
 {
 
 }
+
 
 // Called before the first update
 void Game::start()
@@ -54,4 +54,37 @@ void Game::start()
 
     auto player = std::make_shared<Player>(m_windowWidth, m_windowHeight, &m_gameEntityList, &m_resourceManager);
     m_gameEntityList.add(player);
+}
+
+
+void Game::initializeGameloop()
+{
+    sf::Event Event;
+    sf::Time dt;
+    sf::Clock deltaClock;
+
+    // Loop di loop
+    while (GameWindow->isOpen())
+    {
+        // Poll for game closed
+        while (GameWindow->pollEvent(Event))
+        {
+            if (Event.type == sf::Event::Closed)
+                GameWindow->close();
+        }
+
+        // Calculate delta time
+        dt = deltaClock.restart();
+        float deltaTime = float(dt.asMilliseconds());
+        deltaTime = 1;
+
+        // Update
+        m_gameEntityList.updateAllEntities(deltaTime);
+
+        // Late update
+        m_gameEntityList.lateUpdateAllEntities(deltaTime);
+
+        // And of course, render
+        m_gameRenderer->render();
+    }
 }

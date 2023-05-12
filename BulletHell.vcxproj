@@ -135,7 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source\GameCore\Rendering\RenderLayers.cpp" />
+    <ClCompile Include="Source\GameCore\Rendering\Renderer.cpp" />
     <ClCompile Include="Source\GameCore\EntityList.cpp" />
     <ClCompile Include="Source\GameCore\ResourceManagement\ResourceManager.cpp" />
     <ClCompile Include="Source\GameCore\ResourceManagement\TextureHolder.cpp" />
@@ -143,12 +143,11 @@
     <ClCompile Include="Source\GameCore\Entity\Entity.cpp" />
     <ClCompile Include="Source\GameCore\Entity\Bullet.cpp" />
     <ClCompile Include="Source\GameCore\Game.cpp" />
-    <ClCompile Include="Source\GameCore\GameLoop.cpp" />
     <ClCompile Include="Source\Main\Main.cpp" />
     <ClCompile Include="Source\GameCore\Entity\Player.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\GameCore\Rendering\RenderLayers.h" />
+    <ClInclude Include="Source\GameCore\Rendering\Renderer.h" />
     <ClInclude Include="Source\GameCore\EntityList.h" />
     <ClInclude Include="Source\GameCore\ResourceManagement\TextureHolder.h" />
     <ClInclude Include="Source\GameCore\ResourceManagement\ResourceManager.h" />

@@ -37,6 +37,11 @@ std::string Player::getType()
 	return m_type;
 }
 
+const int Player::getRenderLayer()
+{
+	return renderLayer;
+}
+
 Vector2 Player::getPosition()
 {
 	return m_position;

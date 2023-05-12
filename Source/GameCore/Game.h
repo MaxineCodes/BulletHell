@@ -34,22 +34,17 @@
 // 
 //                  The render works a little differenty, taking all sprites out of the
 //                  entities in the gameEntityList, and rendering them on screen.
+//                  For more explanation look in the Renderer.h file.
 // 
 // 
 //>------------------------------------------------------------------------------------------	
-//
-//  Game.cpp:     Contains initialize(), mainMenu(), start() and initializeGameLoop()
-//                  Basically, contains all game logic that happens before the loop.
 // 
-//	GameLoop.cpp: Contains update(), lateUpdate() and render()
-//                  Contains all game logic that happens in the loop.
-//                  
-//                Maybe it is a little silly to seperate them into seperate files, but for the sake
-//                of keeping the code organized and the file sizes small, I figured this might
-//                be handy. The game is a little too simple to split these up into even smaller 
-//                files though, I think.
-// 			  
-//>------------------------------------------------------------------------------------------			  
+//	Functions:    void initialize(GameSettings& settings)
+//	     		  void mainMenu();
+//	     		  void start();
+//	     		  void initializeGameloop();
+// 
+//>------------------------------------------------------------------------------------------				  
 // 				  
 //	Input:		  GameSettings: Just a container of variables to start the game with.
 //                Later on this could potentially read from a settings file.
@@ -63,10 +58,9 @@
 #include <SFML/Graphics.hpp>
 
 #include "ResourceManagement/ResourceManager.h"
-#include "Entity/Entity.h"
+#include "Rendering/Renderer.h"
 #include "EntityList.h"
 #include "../Settings/GameSettings.h"
-#include "Rendering/RenderLayers.h"
 
 
 // Game instance
@@ -77,32 +71,20 @@ private:
     int m_framerate;
     std::string m_windowTitle;
 
-    std::unique_ptr<sf::RenderWindow> GameWindow;
+    std::shared_ptr<sf::RenderWindow> GameWindow;
     sf::VideoMode VideoMode;
 
-    std::unique_ptr<RenderLayers> m_renderLayers;
-    
+    std::unique_ptr<Renderer> m_gameRenderer;
     ResourceManager m_resourceManager;
     EntityList m_gameEntityList;
 
 public:
     Game(GameSettings& settings);
-    ~Game();
+    ~Game() {}
 
 private:
-
-    // First step
     void initialize(GameSettings& settings);
-
-    // Second step
     void mainMenu();
-
-    // Third step
     void start();
-
-    // Game loop with the functions inside in order
     void initializeGameloop();
-        void update(float deltaTime);
-        void lateUpdate(float deltaTime);
-        void render();
 };

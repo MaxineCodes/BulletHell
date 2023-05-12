@@ -36,6 +36,7 @@ public:
 	virtual void update(float deltaTime);
 	virtual sf::Sprite getSprite();
 	virtual std::string getType();
+	virtual const int getRenderLayer();
 	virtual Vector2 getPosition();
 	virtual void Delete();
 

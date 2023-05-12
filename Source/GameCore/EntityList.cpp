@@ -28,6 +28,11 @@ void EntityList::updateAllEntities(float deltaTime)
     }
 }
 
+void EntityList::lateUpdateAllEntities(float deltaTime)
+{
+
+}
+
 void EntityList::renderAllEntities()
 {
 

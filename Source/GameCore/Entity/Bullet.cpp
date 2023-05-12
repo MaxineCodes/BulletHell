@@ -47,6 +47,11 @@ std::string Bullet::getType()
 	return m_type;
 }
 
+const int Bullet::getRenderLayer()
+{
+	return renderLayer;
+}
+
 Vector2 Bullet::getPosition()
 {
 	Vector2 blep(m_bulletSprite.getPosition().x, m_bulletSprite.getPosition().y);

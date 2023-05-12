@@ -19,7 +19,7 @@ class EntityList;
 class Player : public Entity
 {
 public:
-	const int renderLayer = 1;
+	const int renderLayer = 6;
 	std::string m_type = "Player";
 	Vector2 m_position = Vector2(0.0f, 0.0f);
 
@@ -60,6 +60,7 @@ public:
 	void init();
 	sf::Sprite getSprite();
 	std::string getType();
+	const int getRenderLayer();
 	Vector2 getPosition();
 	void update(float deltaTime);
 	void Delete();

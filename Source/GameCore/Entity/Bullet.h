@@ -16,7 +16,7 @@
 class Bullet : public Entity
 {
 public:
-	const int renderLayer = 2;
+	const int renderLayer = 3;
 	std::string m_type = "Bullet";
 	Vector2 m_position = Vector2(0.0f, 0.0f);
 
@@ -48,6 +48,7 @@ public:
 	void update(float deltaTime);
 	sf::Sprite getSprite();
 	std::string getType();
+	const int getRenderLayer();
 	Vector2 getPosition();
 	void Delete();
 

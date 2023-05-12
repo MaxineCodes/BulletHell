@@ -30,9 +30,6 @@
     <ClCompile Include="Source\GameCore\Entity\Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GameCore\GameLoop.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Settings\GameSettings.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -45,7 +42,7 @@
     <ClCompile Include="Source\GameCore\ResourceManagement\TextureHolder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GameCore\Rendering\RenderLayers.cpp">
+    <ClCompile Include="Source\GameCore\Rendering\Renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -77,7 +74,7 @@
     <ClInclude Include="Source\GameCore\ResourceManagement\TextureHolder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GameCore\Rendering\RenderLayers.h">
+    <ClInclude Include="Source\GameCore\Rendering\Renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -27,6 +27,11 @@ std::string Entity::getType()
 	return m_type;
 }
 
+const int Entity::getRenderLayer()
+{
+	return renderLayer;
+}
+
 Vector2 Entity::getPosition()
 {
 	return m_position;
