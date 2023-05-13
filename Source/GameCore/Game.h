@@ -76,9 +76,6 @@ class Game
 {
     std::shared_ptr<sf::RenderWindow> m_gameWindow;
 
-    ResourceManager m_resourceManager;
-    EntityList m_gameEntityList;
-
 public:
     Game(GameSettings& settings);
     ~Game() {}

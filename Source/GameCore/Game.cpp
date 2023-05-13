@@ -32,23 +32,25 @@ void Game::initialize(GameSettings& settings)
 {
     std::cout << "Game::initialize()" << std::endl;
 
-    // Create Render Window
+    std::cout << "Creating Game render window" << std::endl;
     sf::VideoMode VideoMode(GAME_WINDOWWIDTH, GAME_WINDOWHEIGHT);
     m_gameWindow = std::make_shared<sf::RenderWindow>(VideoMode, settings.WINDOWTITLE);
 
-    // Initialize the renderer
-    GAME_RENDERER = std::make_unique<Renderer>(&m_gameEntityList, m_gameWindow, GAME_WINDOWWIDTH, GAME_WINDOWHEIGHT);
+    std::cout << "Initializing: GAME_RENDERER" << std::endl;
+    GAME_RENDERER = std::make_unique<Renderer>(m_gameWindow);
 
-    // Initialize the resource manager
+    std::cout << "Initializing: GAME_RESOURCEMANAGER" << std::endl;
     GAME_RESOURCEMANAGER = std::make_unique<ResourceManager>();
     if (!GAME_RESOURCEMANAGER->loadResources())
-        std::cout << "Loading resources failed" << std::endl;
+        std::cout << " ERROR: Loading resources failed" << std::endl;
 
-    // Initialize the resource manager
-    if (!m_resourceManager.loadResources())
-        std::cout << "Loading resources failed" << std::endl;
+    std::cout << "Initializing: GAME_SESSIONSTATE" << std::endl;
+    GAME_SESSIONSTATE = std::make_unique<SessionState>();
 
-    // Start the game related stuff
+    std::cout << "Initializing: GAME_ENTITYLIST" << std::endl;
+    GAME_ENTITYLIST = std::make_unique<EntityList>();
+
+    std::cout << "Starting Game" << std::endl;
     mainMenu();
     start();
     initializeGameloop();
@@ -67,8 +69,8 @@ void Game::start()
 {
     std::cout << "Game::start()" << std::endl;
 
-    auto player = std::make_shared<Player>(&m_gameEntityList, &m_resourceManager);
-    m_gameEntityList.add(player);
+    auto player = std::make_shared<Player>();
+    GAME_ENTITYLIST->add(player);
 }
 
 
@@ -94,10 +96,10 @@ void Game::initializeGameloop()
         deltaTime = 1;
 
         // Update
-        m_gameEntityList.updateAllEntities(deltaTime);
+        GAME_ENTITYLIST->updateAllEntities(deltaTime);
 
         // Late update
-        m_gameEntityList.lateUpdateAllEntities(deltaTime);
+        GAME_ENTITYLIST->lateUpdateAllEntities(deltaTime);
 
         // And of course, render
         GAME_RENDERER->render();

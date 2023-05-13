@@ -24,9 +24,6 @@ public:
 	bool canHurtEnemy = false;
 
 private:
-
-	ResourceManager* resourceManager_ptr;
-
 	std::string m_textureName;
 	sf::Texture m_bulletTexture;
 	sf::Sprite m_bulletSprite;
@@ -40,7 +37,6 @@ public:
 		   Vector2 startDirection, 
 		   float speed, 
 		   float size, 
-		   ResourceManager *resourceManager,
 		   const char* textureName);
 
 	~Bullet() { std::cout << "Bullet destroyed" << std::endl; }

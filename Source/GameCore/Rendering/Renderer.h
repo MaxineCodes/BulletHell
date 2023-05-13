@@ -29,24 +29,17 @@
 #include <SFML/Graphics.hpp>
 
 #include "../EntityList.h"
-//#include "../GameGlobals.h"
 
 
 class Renderer
 {
 private:
-	int m_windowWidth, m_windowHeight;
 	const int m_layerCount = 7;
-
 	std::shared_ptr<sf::RenderWindow> m_gameWindow_ptr;
-	EntityList *m_gameEntityList;
 
 public:
 	Renderer() {}
-	Renderer(EntityList *entityList, 
-			 std::shared_ptr<sf::RenderWindow> gameRenderWindow, 
-			 const int windowWidth, 
-			 const int windowHeight);
+	Renderer(std::shared_ptr<sf::RenderWindow> gameRenderWindow);
 	~Renderer() {}
 
 	void render();

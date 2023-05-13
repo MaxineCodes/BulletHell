@@ -11,11 +11,11 @@ bool TextureHolder::add(std::string& fileName, std::string& filePath)
 	sf::Texture texture;
 	if (!texture.loadFromFile(filePath))
 	{
-		std::cout << "Texture not found: " << filePath << std::endl;
+		std::cout << " ERROR: Texture not found: " << filePath << std::endl;
 		return false;
 	}
 
 	m_textureMap[fileName] = texture;
-	std::cout << "Loaded Texture: " << filePath << std::endl;
+	std::cout << " Loaded Texture: " << filePath << std::endl;
 	return true;
 }

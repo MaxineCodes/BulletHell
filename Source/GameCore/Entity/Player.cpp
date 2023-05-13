@@ -7,11 +7,8 @@
 #include "../GameGlobals.h"
 
 // Constructor
-Player::Player(EntityList *gameEntityList, ResourceManager *resourceManager)
+Player::Player()
 {
-	gameEntityList_ptr = gameEntityList;
-	resourceManager_ptr = resourceManager;
-
 	loadResources();
 	init();
 }
@@ -120,30 +117,30 @@ sf::Time Player::shoot()
 			bulletSize = 1.5f;
 		}
 
-		auto bullet0 = std::make_shared<Bullet>(m_position, Vector2(0.0f, -1.0f), bulletSpeed, bulletSize, resourceManager_ptr, texture);
+		auto bullet0 = std::make_shared<Bullet>(m_position, Vector2(0.0f, -1.0f), bulletSpeed, bulletSize, texture);
 		bullet0.get()->canHurtPlayer = false;
 		bullet0.get()->canHurtEnemy = true;
-		gameEntityList_ptr->add(bullet0);
+		GAME_ENTITYLIST->add(bullet0);
 
-		auto bullet1 = std::make_shared<Bullet>(m_position, Vector2(-bulletSpread, -0.9f), bulletSpeed, bulletSize, resourceManager_ptr, texture);
+		auto bullet1 = std::make_shared<Bullet>(m_position, Vector2(-bulletSpread, -0.9f), bulletSpeed, bulletSize, texture);
 		bullet1.get()->canHurtPlayer = false;
 		bullet1.get()->canHurtEnemy = true;
-		gameEntityList_ptr->add(bullet1);
+		GAME_ENTITYLIST->add(bullet1);
 
-		auto bullet2 = std::make_shared<Bullet>(m_position, Vector2(-bulletSpread*2, -0.8f), bulletSpeed, bulletSize, resourceManager_ptr, texture);
+		auto bullet2 = std::make_shared<Bullet>(m_position, Vector2(-bulletSpread*2, -0.8f), bulletSpeed, bulletSize, texture);
 		bullet2.get()->canHurtPlayer = false;
 		bullet2.get()->canHurtEnemy = true;
-		gameEntityList_ptr->add(bullet2);
+		GAME_ENTITYLIST->add(bullet2);
 
-		auto bullet3 = std::make_shared<Bullet>(m_position, Vector2(bulletSpread, -0.9f), bulletSpeed, bulletSize, resourceManager_ptr, texture);
+		auto bullet3 = std::make_shared<Bullet>(m_position, Vector2(bulletSpread, -0.9f), bulletSpeed, bulletSize, texture);
 		bullet3.get()->canHurtPlayer = false;
 		bullet3.get()->canHurtEnemy = true;
-		gameEntityList_ptr->add(bullet3);
+		GAME_ENTITYLIST->add(bullet3);
 
-		auto bullet4 = std::make_shared<Bullet>(m_position, Vector2(bulletSpread*2, -0.8f), bulletSpeed, bulletSize, resourceManager_ptr, texture);
+		auto bullet4 = std::make_shared<Bullet>(m_position, Vector2(bulletSpread*2, -0.8f), bulletSpeed, bulletSize, texture);
 		bullet4.get()->canHurtPlayer = false;
 		bullet4.get()->canHurtEnemy = true;
-		gameEntityList_ptr->add(bullet4);
+		GAME_ENTITYLIST->add(bullet4);
 
 		frameTime = clock.restart();
 	}

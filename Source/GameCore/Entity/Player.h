@@ -24,9 +24,6 @@ public:
 	Vector2 m_position = Vector2(0.0f, 0.0f);
 
 private:
-	EntityList* gameEntityList_ptr;
-	ResourceManager* resourceManager_ptr;
-
 	const sf::Time m_shootDelay = sf::milliseconds(10);
 	const float m_playerScale = 1.5f;
 	const float m_hitboxSpriteScale = 3.0f;
@@ -54,7 +51,7 @@ private:
 	bool m_shooting = false;
 
 public:
-	Player(EntityList *gameEntityList, ResourceManager *resourceManager);
+	Player();
 	~Player() {}
 
 	void update(float deltaTime);

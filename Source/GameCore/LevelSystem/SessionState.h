@@ -15,10 +15,9 @@
 #pragma once
 
 #include "LevelState.h"
-#include "../Datatypes/Singleton.h"
 
 
-class SessionState : public Singleton
+class SessionState
 {
 public:
 	unsigned int m_playerLives = 3;
@@ -26,7 +25,7 @@ public:
 	unsigned int m_enemyKillCount = 0;
 
 public:
-	void playerHit();
-	void enemyKilled();
+	//void playerHit();
+	//void enemyKilled();
 };
 
