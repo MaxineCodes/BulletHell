@@ -28,7 +28,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
-#include "../EntityList.h"
+#include "../Entities/EntityList.h"
 
 
 class Renderer

@@ -11,7 +11,7 @@
 #pragma once
 
 #include "Entity.h"
-#include "../EntityList.h"
+#include "EntityList.h"
 
 class EntityList;
 

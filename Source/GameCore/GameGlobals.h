@@ -21,7 +21,7 @@
 #include "LevelSystem/SessionState.h"
 #include "Rendering/Renderer.h"
 #include "ResourceManagement/ResourceManager.h"
-#include "EntityList.h"
+#include "Entities/EntityList.h"
 
 
 // Assigned in Game constructor

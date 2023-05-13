@@ -21,13 +21,13 @@
     <ClCompile Include="Source\GameCore\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GameCore\Entity\Player.cpp">
+    <ClCompile Include="Source\GameCore\Entities\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GameCore\Entity\Bullet.cpp">
+    <ClCompile Include="Source\GameCore\Entities\Bullet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GameCore\Entity\Entity.cpp">
+    <ClCompile Include="Source\GameCore\Entities\Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Settings\GameSettings.cpp">
@@ -36,7 +36,7 @@
     <ClCompile Include="Source\GameCore\ResourceManagement\ResourceManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GameCore\EntityList.cpp">
+    <ClCompile Include="Source\GameCore\Entities\EntityList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\GameCore\ResourceManagement\TextureHolder.cpp">
@@ -68,16 +68,16 @@
     <ClInclude Include="Source\GameCore\Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GameCore\Entity\Player.h">
+    <ClInclude Include="Source\GameCore\Entities\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\GameCore\Math\GameMath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GameCore\Entity\Bullet.h">
+    <ClInclude Include="Source\GameCore\Entities\Bullet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GameCore\Entity\Entity.h">
+    <ClInclude Include="Source\GameCore\Entities\Entity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Settings\GameSettings.h">
@@ -86,7 +86,7 @@
     <ClInclude Include="Source\GameCore\ResourceManagement\ResourceManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GameCore\EntityList.h">
+    <ClInclude Include="Source\GameCore\Entities\EntityList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\GameCore\ResourceManagement\TextureHolder.h">
