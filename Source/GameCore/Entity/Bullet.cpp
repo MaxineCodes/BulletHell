@@ -1,5 +1,10 @@
 #include "Bullet.h"
 
+#include "../Math/Colllision.h"
+#include "../Math/GameMath.h"
+#include "../GameGlobals.h"
+
+
 // Constructor
 Bullet::Bullet(Vector2 startPosition, Vector2 startDirection, float speed, float size, ResourceManager* resourceManager, const char* textureName)
 {
@@ -13,7 +18,8 @@ Bullet::Bullet(Vector2 startPosition, Vector2 startDirection, float speed, float
 	m_bulletTexture = resourceManager_ptr->getTexture(textureName);
 	m_bulletSprite.setTexture(m_bulletTexture);
 
-	m_bulletSprite.setOrigin(32 / 2, 32 / 2 + 32 / 6);
+	const float textureSize = float(getTextureDimensions(m_bulletTexture)[0]);
+	m_bulletSprite.setOrigin(textureSize / 2, textureSize / 2 + textureSize / 6);
 	m_bulletSprite.setScale(m_size, m_size);
 	m_bulletSprite.setPosition(startPosition.x, startPosition.y);
 }
@@ -48,13 +54,15 @@ const int Bullet::getRenderLayer()
 
 Vector2 Bullet::getPosition()
 {
-	Vector2 blep(m_bulletSprite.getPosition().x, m_bulletSprite.getPosition().y);
-	return blep;
+	return Vector2(m_bulletSprite.getPosition().x, m_bulletSprite.getPosition().y);
 }
 
 bool Bullet::shouldBeDestroyed()
 {
-	if (m_position.y < -100.0f)
+	//extern int GAME_WINDOWWIDTH;
+	//extern int GAME_WINDOWHEIGHT;
+
+	if (!IsInGameArea(m_position, GAME_WINDOWWIDTH, GAME_WINDOWHEIGHT))
 		return true;
 
 	return false;

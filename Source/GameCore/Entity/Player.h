@@ -54,7 +54,7 @@ private:
 	bool m_shooting = false;
 
 public:
-	Player(int windowWidth, int windowHeight, EntityList *gameEntityList, ResourceManager *resourceManager);
+	Player(EntityList *gameEntityList, ResourceManager *resourceManager);
 	~Player() {}
 
 	void update(float deltaTime);

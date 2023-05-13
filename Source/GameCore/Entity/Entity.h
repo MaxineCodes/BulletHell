@@ -14,7 +14,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "../ResourceManagement/ResourceManager.h"
-#include "../GameMath.h"
+#include "../Datatypes/Vector2.h"
 
 
 // Entity base interface

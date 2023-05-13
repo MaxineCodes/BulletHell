@@ -1,12 +1,14 @@
 #include "Player.h"
 #include "Bullet.h"
 
-// Constructor
-Player::Player(int windowWidth, int windowHeight, EntityList *gameEntityList, ResourceManager *resourceManager)
-{
-	m_gameWindowWidth = windowWidth;
-	m_gameWindowHeight = windowHeight;
+#include "../Math/Colllision.h"
+#include "../Math/GameMath.h"
 
+#include "../GameGlobals.h"
+
+// Constructor
+Player::Player(EntityList *gameEntityList, ResourceManager *resourceManager)
+{
 	gameEntityList_ptr = gameEntityList;
 	resourceManager_ptr = resourceManager;
 
@@ -22,8 +24,8 @@ void Player::init()
 	m_playerSprite.setScale(m_playerScale, m_playerScale);
 
 	// Set starting position of player
-	const float startPositionX = static_cast<float>(m_gameWindowWidth)  / 2 * 1; // 2:1 ratio
-	const float startPositionY = static_cast<float>(m_gameWindowHeight) / 5 * 4; // 5:4 ratio
+	const float startPositionX = static_cast<float>(GAME_WINDOWWIDTH)  / 2 * 1; // 2:1 ratio
+	const float startPositionY = static_cast<float>(GAME_WINDOWHEIGHT) / 5 * 4; // 5:4 ratio
 	m_playerSprite.setPosition(startPositionX, startPositionY);
 }
 
@@ -65,12 +67,12 @@ void Player::update(float deltaTime)
 
 	if (m_slowmode) 
 	{
-		movement(m_slowSpeed, m_gameWindowWidth, m_gameWindowHeight, deltaTime);
+		movement(m_slowSpeed, GAME_WINDOWWIDTH, GAME_WINDOWHEIGHT, deltaTime);
 		m_playerSprite.setTexture(m_hitBoxTexture);
 	}
 	else
 	{
-		movement(m_normalSpeed, m_gameWindowWidth, m_gameWindowHeight, deltaTime);
+		movement(m_normalSpeed, GAME_WINDOWWIDTH, GAME_WINDOWHEIGHT, deltaTime);
 		m_playerSprite.setTexture(m_playerTexture);
 	}
 

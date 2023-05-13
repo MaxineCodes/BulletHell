@@ -135,6 +135,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\GameCore\Datatypes\Singleton.cpp" />
+    <ClCompile Include="Source\GameCore\LevelSystem\LevelState.cpp" />
+    <ClCompile Include="Source\GameCore\LevelSystem\SessionState.cpp" />
+    <ClCompile Include="Source\GameCore\Math\GameMath.cpp" />
     <ClCompile Include="Source\GameCore\Rendering\Renderer.cpp" />
     <ClCompile Include="Source\GameCore\EntityList.cpp" />
     <ClCompile Include="Source\GameCore\ResourceManagement\ResourceManager.cpp" />
@@ -146,8 +150,14 @@
     <ClCompile Include="Source\Main\Main.cpp" />
     <ClCompile Include="Source\GameCore\Entity\Player.cpp" />
     <ClCompile Include="Source\GameCore\Rendering\SpriteSwapper.cpp" />
+    <ClCompile Include="Source\GameCore\Datatypes\Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\GameCore\Datatypes\Singleton.h" />
+    <ClInclude Include="Source\GameCore\GameGlobals.h" />
+    <ClInclude Include="Source\GameCore\LevelSystem\LevelState.h" />
+    <ClInclude Include="Source\GameCore\LevelSystem\SessionState.h" />
+    <ClInclude Include="Source\GameCore\Math\Colllision.h" />
     <ClInclude Include="Source\GameCore\Rendering\Renderer.h" />
     <ClInclude Include="Source\GameCore\EntityList.h" />
     <ClInclude Include="Source\GameCore\ResourceManagement\TextureHolder.h" />
@@ -155,10 +165,11 @@
     <ClInclude Include="Source\Settings\GameSettings.h" />
     <ClInclude Include="Source\GameCore\Entity\Entity.h" />
     <ClInclude Include="Source\GameCore\Entity\Bullet.h" />
-    <ClInclude Include="Source\GameCore\GameMath.h" />
+    <ClInclude Include="Source\GameCore\Math\GameMath.h" />
     <ClInclude Include="Source\GameCore\Entity\Player.h" />
     <ClInclude Include="Source\GameCore\Game.h" />
     <ClInclude Include="Source\GameCore\Rendering\SpriteSwapper.h" />
+    <ClInclude Include="Source\GameCore\Datatypes\Vector2.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Res\BulletPointBlue.png" />

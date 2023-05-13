@@ -24,6 +24,7 @@ public:
 	bool canHurtEnemy = false;
 
 private:
+
 	ResourceManager* resourceManager_ptr;
 
 	std::string m_textureName;

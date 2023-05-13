@@ -61,7 +61,7 @@
 #include "Rendering/Renderer.h"
 #include "EntityList.h"
 #include "../Settings/GameSettings.h"
-
+#include "GameGlobals.h"
 
 // Game instance
 class Game

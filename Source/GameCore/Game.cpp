@@ -1,5 +1,11 @@
 #include "Game.h"
 
+// Game globals
+// Accessed through GameGlobals.h
+int GAME_WINDOWWIDTH;
+int GAME_WINDOWHEIGHT;
+std::unique_ptr<SessionState> GAME_SESSIONSTATE;
+
 
 Game::Game(GameSettings& settings)
 {
@@ -7,6 +13,9 @@ Game::Game(GameSettings& settings)
     m_windowHeight = settings.WINDOWHEIGHT;
     m_framerate = settings.FRAMERATE;
     m_windowTitle = settings.WINDOWTITLE;
+
+    GAME_WINDOWWIDTH = settings.WINDOWWIDTH;
+    GAME_WINDOWHEIGHT = settings.WINDOWHEIGHT;
 
     // Debug prints
     std::cout << "WINDOWHEIGHT=" << m_windowWidth << std::endl;
@@ -28,6 +37,7 @@ void Game::initialize(GameSettings& settings)
 
     // Initialize the renderer
     m_gameRenderer = std::make_unique<Renderer>(&m_gameEntityList, GameWindow, m_windowWidth, m_windowHeight);
+    //GAME_SESSIONSTATE = m_gameRenderer;
 
     // Initialize the resource manager
     if (!m_resourceManager.loadResources())
@@ -52,7 +62,7 @@ void Game::start()
 {
     std::cout << "Game::start()" << std::endl;
 
-    auto player = std::make_shared<Player>(m_windowWidth, m_windowHeight, &m_gameEntityList, &m_resourceManager);
+    auto player = std::make_shared<Player>(&m_gameEntityList, &m_resourceManager);
     m_gameEntityList.add(player);
 }
 

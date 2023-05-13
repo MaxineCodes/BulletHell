@@ -48,6 +48,21 @@
     <ClCompile Include="Source\GameCore\Rendering\SpriteSwapper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\GameCore\LevelSystem\SessionState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameCore\LevelSystem\LevelState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameCore\Datatypes\Singleton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameCore\Datatypes\Vector2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameCore\Math\GameMath.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\GameCore\Game.h">
@@ -56,7 +71,7 @@
     <ClInclude Include="Source\GameCore\Entity\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GameCore\GameMath.h">
+    <ClInclude Include="Source\GameCore\Math\GameMath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\GameCore\Entity\Bullet.h">
@@ -81,6 +96,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\GameCore\Rendering\SpriteSwapper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameCore\LevelSystem\SessionState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameCore\LevelSystem\LevelState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameCore\Datatypes\Singleton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameCore\Datatypes\Vector2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameCore\Math\Colllision.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameCore\GameGlobals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
