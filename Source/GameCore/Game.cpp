@@ -4,23 +4,24 @@
 // Accessed through GameGlobals.h
 int GAME_WINDOWWIDTH;
 int GAME_WINDOWHEIGHT;
-std::unique_ptr<SessionState> GAME_SESSIONSTATE;
+int GAME_FRAMERATE;
+
+std::unique_ptr<Renderer>        GAME_RENDERER;
+std::unique_ptr<ResourceManager> GAME_RESOURCEMANAGER;
+std::unique_ptr<EntityList>      GAME_ENTITYLIST;
+std::unique_ptr<SessionState>    GAME_SESSIONSTATE;
 
 
 Game::Game(GameSettings& settings)
 {
-    m_windowWidth = settings.WINDOWWIDTH;
-    m_windowHeight = settings.WINDOWHEIGHT;
-    m_framerate = settings.FRAMERATE;
-    m_windowTitle = settings.WINDOWTITLE;
-
     GAME_WINDOWWIDTH = settings.WINDOWWIDTH;
     GAME_WINDOWHEIGHT = settings.WINDOWHEIGHT;
+    GAME_FRAMERATE = settings.FRAMERATE;
 
     // Debug prints
-    std::cout << "WINDOWHEIGHT=" << m_windowWidth << std::endl;
-    std::cout << "WINDOWWIDTH=" << m_windowHeight << std::endl;
-    std::cout << "FRAMERATE=" << m_framerate << std::endl;
+    std::cout << "WINDOWHEIGHT=" << GAME_WINDOWWIDTH << std::endl;
+    std::cout << "WINDOWWIDTH=" << GAME_WINDOWHEIGHT << std::endl;
+    std::cout << "FRAMERATE=" << GAME_FRAMERATE << std::endl;
 
     initialize(settings);
 }
@@ -32,12 +33,16 @@ void Game::initialize(GameSettings& settings)
     std::cout << "Game::initialize()" << std::endl;
 
     // Create Render Window
-    VideoMode = sf::VideoMode(m_windowWidth, m_windowHeight);
-    GameWindow = std::make_shared<sf::RenderWindow>(VideoMode, m_windowTitle);
+    sf::VideoMode VideoMode(GAME_WINDOWWIDTH, GAME_WINDOWHEIGHT);
+    m_gameWindow = std::make_shared<sf::RenderWindow>(VideoMode, settings.WINDOWTITLE);
 
     // Initialize the renderer
-    m_gameRenderer = std::make_unique<Renderer>(&m_gameEntityList, GameWindow, m_windowWidth, m_windowHeight);
-    //GAME_SESSIONSTATE = m_gameRenderer;
+    GAME_RENDERER = std::make_unique<Renderer>(&m_gameEntityList, m_gameWindow, GAME_WINDOWWIDTH, GAME_WINDOWHEIGHT);
+
+    // Initialize the resource manager
+    GAME_RESOURCEMANAGER = std::make_unique<ResourceManager>();
+    if (!GAME_RESOURCEMANAGER->loadResources())
+        std::cout << "Loading resources failed" << std::endl;
 
     // Initialize the resource manager
     if (!m_resourceManager.loadResources())
@@ -74,13 +79,13 @@ void Game::initializeGameloop()
     sf::Clock deltaClock;
 
     // Loop di loop
-    while (GameWindow->isOpen())
+    while (m_gameWindow->isOpen())
     {
         // Poll for game closed
-        while (GameWindow->pollEvent(Event))
+        while (m_gameWindow->pollEvent(Event))
         {
             if (Event.type == sf::Event::Closed)
-                GameWindow->close();
+                m_gameWindow->close();
         }
 
         // Calculate delta time
@@ -95,6 +100,6 @@ void Game::initializeGameloop()
         m_gameEntityList.lateUpdateAllEntities(deltaTime);
 
         // And of course, render
-        m_gameRenderer->render();
+        GAME_RENDERER->render();
     }
 }

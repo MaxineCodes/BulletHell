@@ -29,6 +29,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "../EntityList.h"
+//#include "../GameGlobals.h"
 
 
 class Renderer

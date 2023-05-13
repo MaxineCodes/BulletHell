@@ -36,6 +36,16 @@
 //                  entities in the gameEntityList, and rendering them on screen.
 //                  For more explanation look in the Renderer.h file.
 // 
+//>------------------------------------------------------------------------------------------	
+// 
+//	Globals:      GameGlobals.h contains a number of global variables for the game.
+//	              These variables are defined in the Game.cpp file.
+// 
+//	              Although globals are generally not preferred, for the scale of this
+//	              game it helps keep the code simpler and in my opinion cleaner.
+// 
+//	              "Why not use Singletons?" because in C++ you don't /need/ singletons.
+//	              Using things you don't need just for some "standard" is stinky.
 // 
 //>------------------------------------------------------------------------------------------	
 // 
@@ -57,24 +67,15 @@
 #include <memory>
 #include <SFML/Graphics.hpp>
 
-#include "ResourceManagement/ResourceManager.h"
-#include "Rendering/Renderer.h"
-#include "EntityList.h"
 #include "../Settings/GameSettings.h"
 #include "GameGlobals.h"
+
 
 // Game instance
 class Game
 {
-private:
-    int m_windowWidth, m_windowHeight;
-    int m_framerate;
-    std::string m_windowTitle;
+    std::shared_ptr<sf::RenderWindow> m_gameWindow;
 
-    std::shared_ptr<sf::RenderWindow> GameWindow;
-    sf::VideoMode VideoMode;
-
-    std::unique_ptr<Renderer> m_gameRenderer;
     ResourceManager m_resourceManager;
     EntityList m_gameEntityList;
 

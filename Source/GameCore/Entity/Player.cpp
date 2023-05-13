@@ -92,12 +92,12 @@ void Player::loadResources()
 {
 	std::cout << "Player::LoadResources()" << std::endl;
 
-	m_playerTexture = resourceManager_ptr->getTexture("Cirno.png");
+	m_playerTexture = GAME_RESOURCEMANAGER->getTexture("Cirno.png");
 	m_playerSprite.setTexture(m_playerTexture);
 
-	m_hitBoxTexture = resourceManager_ptr->getTexture("Flandre.png");
-	m_smallBulletTexture = resourceManager_ptr->getTexture("PlayerBulletSmall.png");
-	m_largeBulletTexture = resourceManager_ptr->getTexture("PlayerBulletLarge.png");
+	m_hitBoxTexture = GAME_RESOURCEMANAGER->getTexture("Flandre.png");
+	m_smallBulletTexture = GAME_RESOURCEMANAGER->getTexture("PlayerBulletSmall.png");
+	m_largeBulletTexture = GAME_RESOURCEMANAGER->getTexture("PlayerBulletLarge.png");
 }
 
 sf::Time Player::shoot()
