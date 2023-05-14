@@ -37,10 +37,19 @@ private:
 	const int m_layerCount = 7;
 	std::shared_ptr<sf::RenderWindow> m_gameWindow_ptr;
 
+	sf::Texture m_backgroundTexture;
+	sf::Sprite m_backgroundSprite;
+
 public:
 	Renderer() {}
 	Renderer(std::shared_ptr<sf::RenderWindow> gameRenderWindow);
 	~Renderer() {}
+
+	void draw(sf::Sprite sprite);
+
+	void setBackground();
+
+	void display();
 
 	void render();
 };

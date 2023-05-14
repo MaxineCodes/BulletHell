@@ -24,7 +24,10 @@ public:
 	unsigned int m_score = 0;
 	unsigned int m_enemyKillCount = 0;
 
+	LevelState levelOne;
+
 public:
+	const char* getBackgroundTextureName();
 	void playerHit();
 	void enemyKilled();
 };

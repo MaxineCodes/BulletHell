@@ -14,9 +14,16 @@
 /////////////////////////////////////////////////////////////////////////////////////////////
 #pragma once
 
+#include <string>
+
 
 
 class LevelState
 {
+private:
+	const char* m_backgroundTexture = "PurpleSpaceBackground.png";
+
+public:
+	const char* getBackgroundTextureName();
 };
 

@@ -81,6 +81,9 @@
     <ClCompile Include="Source\Game\Rendering\CanvasRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Game\BulletPatterns\BulletPatterns.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Game\Game.h">
@@ -152,6 +155,9 @@
     <ClInclude Include="Source\Game\Rendering\CanvasRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Game\BulletPatterns\BulletPatterns.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Res\BulletPointBlue.png">
@@ -170,6 +176,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Res\PlayerBulletSmall.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Library\Downloads\Space Background.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

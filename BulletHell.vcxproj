@@ -135,6 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Game\BulletPatterns\BulletPatterns.cpp" />
     <ClCompile Include="Source\Game\Rendering\CanvasRenderer.cpp" />
     <ClCompile Include="Source\Game\Entities\Enemies\Destroyer.cpp" />
     <ClCompile Include="Source\Game\Entities\Bullets\PlayerBullet.cpp" />
@@ -159,6 +160,7 @@
     <ClCompile Include="Source\Game\UI\UserInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Game\BulletPatterns\BulletPatterns.h" />
     <ClInclude Include="Source\Game\Rendering\CanvasRenderer.h" />
     <ClInclude Include="Source\Game\Entities\Enemies\Destroyer.h" />
     <ClInclude Include="Source\Game\Entities\Bullets\PlayerBullet.h" />
@@ -184,6 +186,7 @@
     <ClInclude Include="Source\Game\UI\UserInterface.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\..\..\Library\Downloads\Space Background.png" />
     <Image Include="Res\BulletPointBlue.png" />
     <Image Include="Res\Cirno.png" />
     <Image Include="Res\Flandre.png" />

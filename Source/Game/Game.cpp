@@ -36,9 +36,6 @@ Game::Game(GameSettings& settings)
     sf::VideoMode VideoMode(APPLICATION_WINDOWWIDTH, APPLICATION_WINDOWHEIGHT);
     m_gameWindow = std::make_shared<sf::RenderWindow>(VideoMode, settings.WINDOWTITLE);
 
-    std::cout << "Initializing: GAME_RENDERER" << std::endl;
-    GAME_RENDERER = std::make_unique<Renderer>(m_gameWindow);
-
     std::cout << "Initializing: GAME_RESOURCEMANAGER" << std::endl;
     GAME_RESOURCEMANAGER = std::make_unique<ResourceManager>();
     if (!GAME_RESOURCEMANAGER->loadResources())
@@ -49,6 +46,9 @@ Game::Game(GameSettings& settings)
 
     std::cout << "Initializing: GAME_ENTITYLIST" << std::endl;
     GAME_ENTITYLIST = std::make_unique<EntityList>();
+
+    std::cout << "Initializing: GAME_RENDERER" << std::endl;
+    GAME_RENDERER = std::make_unique<Renderer>(m_gameWindow);
 
     std::cout << "Starting Game" << std::endl;
     mainMenu();
