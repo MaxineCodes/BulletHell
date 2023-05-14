@@ -13,11 +13,11 @@
 // 
 //	   Layer 0: Background
 //	   Layer 1: Fx over background
-//	   Layer 2: Large enemy bullets
-//	   Layer 3: Player bullets
-//	   Layer 4: Enemies
-// 	   Layer 5: Small enemy bullets
-//	   Layer 6: Player
+//	   Layer 2: Player bullets
+//	   Layer 3: Player
+// 	   Layer 4: Large enemy bullets
+//	   Layer 5: Small enemy bullets
+//	   Layer 6: Enemy
 //	   Layer 7: Screen-wide fx
 //	   Layer 8: User interface
 // 

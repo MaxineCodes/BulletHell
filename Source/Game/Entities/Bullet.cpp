@@ -19,7 +19,7 @@ Bullet::Bullet(Vector2 startPosition, Vector2 startDirection, float speed, float
 
 	const float textureSize = float(getTextureDimensions(m_bulletTexture)[0]);
 	m_bulletSprite.setOrigin(textureSize / 2, textureSize / 2 + textureSize / 6);
-	m_bulletSprite.setScale(m_size, m_size);
+	m_bulletSprite.setScale(m_size * GAME_SCALE, m_size * GAME_SCALE);
 	m_bulletSprite.setPosition(startPosition.x, startPosition.y);
 }
 
@@ -36,6 +36,11 @@ void Bullet::update(float deltaTime)
 	m_bulletSprite.move((m_direction.x * m_speed) * deltaTime, (m_direction.y * m_speed) * deltaTime);
 }
 
+void Bullet::lateUpdate(float deltaTime)
+{
+
+}
+
 sf::Sprite Bullet::getSprite()
 {
 	return m_bulletSprite;
@@ -48,12 +53,17 @@ std::string Bullet::getType()
 
 const int Bullet::getRenderLayer()
 {
-	return renderLayer;
+	return m_renderLayer;
 }
 
 Vector2 Bullet::getPosition()
 {
 	return Vector2(m_bulletSprite.getPosition().x, m_bulletSprite.getPosition().y);
+}
+
+float Bullet::getCollisionRange()
+{
+	return m_collisionRange;
 }
 
 bool Bullet::shouldBeDestroyed()

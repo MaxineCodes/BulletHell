@@ -135,41 +135,53 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source\GameCore\Datatypes\Singleton.cpp" />
-    <ClCompile Include="Source\GameCore\LevelSystem\LevelState.cpp" />
-    <ClCompile Include="Source\GameCore\LevelSystem\SessionState.cpp" />
-    <ClCompile Include="Source\GameCore\Math\GameMath.cpp" />
-    <ClCompile Include="Source\GameCore\Rendering\Renderer.cpp" />
-    <ClCompile Include="Source\GameCore\Entities\EntityList.cpp" />
-    <ClCompile Include="Source\GameCore\ResourceManagement\ResourceManager.cpp" />
-    <ClCompile Include="Source\GameCore\ResourceManagement\TextureHolder.cpp" />
+    <ClCompile Include="Source\Game\Rendering\CanvasRenderer.cpp" />
+    <ClCompile Include="Source\Game\Entities\Enemies\Destroyer.cpp" />
+    <ClCompile Include="Source\Game\Entities\Bullets\PlayerBullet.cpp" />
+    <ClCompile Include="Source\Game\Entities\Enemy.cpp" />
+    <ClCompile Include="Source\Game\Datatypes\Singleton.cpp" />
+    <ClCompile Include="Source\Game\LevelSystem\LevelState.cpp" />
+    <ClCompile Include="Source\Game\LevelSystem\SessionState.cpp" />
+    <ClCompile Include="Source\Game\Math\Colllision.cpp" />
+    <ClCompile Include="Source\Game\Math\GameMath.cpp" />
+    <ClCompile Include="Source\Game\Rendering\Renderer.cpp" />
+    <ClCompile Include="Source\Game\Entities\EntityList.cpp" />
+    <ClCompile Include="Source\Game\ResourceManagement\ResourceManager.cpp" />
+    <ClCompile Include="Source\Game\ResourceManagement\TextureHolder.cpp" />
     <ClCompile Include="Source\Settings\GameSettings.cpp" />
-    <ClCompile Include="Source\GameCore\Entities\Entity.cpp" />
-    <ClCompile Include="Source\GameCore\Entities\Bullet.cpp" />
-    <ClCompile Include="Source\GameCore\Game.cpp" />
+    <ClCompile Include="Source\Game\Entities\Entity.cpp" />
+    <ClCompile Include="Source\Game\Entities\Bullet.cpp" />
+    <ClCompile Include="Source\Game\Game.cpp" />
     <ClCompile Include="Source\Main\Main.cpp" />
-    <ClCompile Include="Source\GameCore\Entities\Player.cpp" />
-    <ClCompile Include="Source\GameCore\Rendering\SpriteSwapper.cpp" />
-    <ClCompile Include="Source\GameCore\Datatypes\Vector2.cpp" />
+    <ClCompile Include="Source\Game\Entities\Player.cpp" />
+    <ClCompile Include="Source\Game\Rendering\SpriteSwapper.cpp" />
+    <ClCompile Include="Source\Game\Datatypes\Vector2.cpp" />
+    <ClCompile Include="Source\Game\UI\UserInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\GameCore\Datatypes\Singleton.h" />
-    <ClInclude Include="Source\GameCore\GameGlobals.h" />
-    <ClInclude Include="Source\GameCore\LevelSystem\LevelState.h" />
-    <ClInclude Include="Source\GameCore\LevelSystem\SessionState.h" />
-    <ClInclude Include="Source\GameCore\Math\Colllision.h" />
-    <ClInclude Include="Source\GameCore\Rendering\Renderer.h" />
-    <ClInclude Include="Source\GameCore\Entities\EntityList.h" />
-    <ClInclude Include="Source\GameCore\ResourceManagement\TextureHolder.h" />
-    <ClInclude Include="Source\GameCore\ResourceManagement\ResourceManager.h" />
+    <ClInclude Include="Source\Game\Rendering\CanvasRenderer.h" />
+    <ClInclude Include="Source\Game\Entities\Enemies\Destroyer.h" />
+    <ClInclude Include="Source\Game\Entities\Bullets\PlayerBullet.h" />
+    <ClInclude Include="Source\Game\Entities\Enemy.h" />
+    <ClInclude Include="Source\Game\Datatypes\Singleton.h" />
+    <ClInclude Include="Source\Game\GameGlobals.h" />
+    <ClInclude Include="Source\Game\LevelSystem\LevelState.h" />
+    <ClInclude Include="Source\Game\LevelSystem\SessionState.h" />
+    <ClInclude Include="Source\Game\Math\Colllision.h" />
+    <ClInclude Include="Source\Game\Math\Time.h" />
+    <ClInclude Include="Source\Game\Rendering\Renderer.h" />
+    <ClInclude Include="Source\Game\Entities\EntityList.h" />
+    <ClInclude Include="Source\Game\ResourceManagement\TextureHolder.h" />
+    <ClInclude Include="Source\Game\ResourceManagement\ResourceManager.h" />
     <ClInclude Include="Source\Settings\GameSettings.h" />
-    <ClInclude Include="Source\GameCore\Entities\Entity.h" />
-    <ClInclude Include="Source\GameCore\Entities\Bullet.h" />
-    <ClInclude Include="Source\GameCore\Math\GameMath.h" />
-    <ClInclude Include="Source\GameCore\Entities\Player.h" />
-    <ClInclude Include="Source\GameCore\Game.h" />
-    <ClInclude Include="Source\GameCore\Rendering\SpriteSwapper.h" />
-    <ClInclude Include="Source\GameCore\Datatypes\Vector2.h" />
+    <ClInclude Include="Source\Game\Entities\Entity.h" />
+    <ClInclude Include="Source\Game\Entities\Bullet.h" />
+    <ClInclude Include="Source\Game\Math\GameMath.h" />
+    <ClInclude Include="Source\Game\Entities\Player.h" />
+    <ClInclude Include="Source\Game\Game.h" />
+    <ClInclude Include="Source\Game\Rendering\SpriteSwapper.h" />
+    <ClInclude Include="Source\Game\Datatypes\Vector2.h" />
+    <ClInclude Include="Source\Game\UI\UserInterface.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Res\BulletPointBlue.png" />

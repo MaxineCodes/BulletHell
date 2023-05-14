@@ -18,102 +18,138 @@
     <ClCompile Include="Source\Main\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GameCore\Game.cpp">
+    <ClCompile Include="Source\Game\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GameCore\Entities\Player.cpp">
+    <ClCompile Include="Source\Game\Entities\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GameCore\Entities\Bullet.cpp">
+    <ClCompile Include="Source\Game\Entities\Bullet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GameCore\Entities\Entity.cpp">
+    <ClCompile Include="Source\Game\Entities\Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Settings\GameSettings.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GameCore\ResourceManagement\ResourceManager.cpp">
+    <ClCompile Include="Source\Game\ResourceManagement\ResourceManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GameCore\Entities\EntityList.cpp">
+    <ClCompile Include="Source\Game\Entities\EntityList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GameCore\ResourceManagement\TextureHolder.cpp">
+    <ClCompile Include="Source\Game\ResourceManagement\TextureHolder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GameCore\Rendering\Renderer.cpp">
+    <ClCompile Include="Source\Game\Rendering\Renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GameCore\Rendering\SpriteSwapper.cpp">
+    <ClCompile Include="Source\Game\Rendering\SpriteSwapper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GameCore\LevelSystem\SessionState.cpp">
+    <ClCompile Include="Source\Game\LevelSystem\SessionState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GameCore\LevelSystem\LevelState.cpp">
+    <ClCompile Include="Source\Game\LevelSystem\LevelState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GameCore\Datatypes\Singleton.cpp">
+    <ClCompile Include="Source\Game\Datatypes\Singleton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GameCore\Datatypes\Vector2.cpp">
+    <ClCompile Include="Source\Game\Datatypes\Vector2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GameCore\Math\GameMath.cpp">
+    <ClCompile Include="Source\Game\Math\GameMath.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Entities\Enemy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Math\Colllision.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Entities\Bullets\PlayerBullet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Entities\Enemies\Destroyer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\UI\UserInterface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Rendering\CanvasRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\GameCore\Game.h">
+    <ClInclude Include="Source\Game\Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GameCore\Entities\Player.h">
+    <ClInclude Include="Source\Game\Entities\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GameCore\Math\GameMath.h">
+    <ClInclude Include="Source\Game\Math\GameMath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GameCore\Entities\Bullet.h">
+    <ClInclude Include="Source\Game\Entities\Bullet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GameCore\Entities\Entity.h">
+    <ClInclude Include="Source\Game\Entities\Entity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Settings\GameSettings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GameCore\ResourceManagement\ResourceManager.h">
+    <ClInclude Include="Source\Game\ResourceManagement\ResourceManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GameCore\Entities\EntityList.h">
+    <ClInclude Include="Source\Game\Entities\EntityList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GameCore\ResourceManagement\TextureHolder.h">
+    <ClInclude Include="Source\Game\ResourceManagement\TextureHolder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GameCore\Rendering\Renderer.h">
+    <ClInclude Include="Source\Game\Rendering\Renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GameCore\Rendering\SpriteSwapper.h">
+    <ClInclude Include="Source\Game\Rendering\SpriteSwapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GameCore\LevelSystem\SessionState.h">
+    <ClInclude Include="Source\Game\LevelSystem\SessionState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GameCore\LevelSystem\LevelState.h">
+    <ClInclude Include="Source\Game\LevelSystem\LevelState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GameCore\Datatypes\Singleton.h">
+    <ClInclude Include="Source\Game\Datatypes\Singleton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GameCore\Datatypes\Vector2.h">
+    <ClInclude Include="Source\Game\Datatypes\Vector2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GameCore\Math\Colllision.h">
+    <ClInclude Include="Source\Game\Math\Colllision.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GameCore\GameGlobals.h">
+    <ClInclude Include="Source\Game\GameGlobals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Entities\Enemy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Math\Time.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Entities\Bullets\PlayerBullet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Entities\Enemies\Destroyer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\UI\UserInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Rendering\CanvasRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

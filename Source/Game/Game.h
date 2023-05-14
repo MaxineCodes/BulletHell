@@ -70,6 +70,8 @@
 #include "../Settings/GameSettings.h"
 #include "GameGlobals.h"
 
+#include "Entities/Enemies/Destroyer.h"
+
 
 // Game instance
 class Game

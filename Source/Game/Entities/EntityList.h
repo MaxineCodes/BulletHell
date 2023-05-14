@@ -28,4 +28,6 @@ public:
 
 	void add(std::shared_ptr<Entity> entity);
 	std::vector<std::shared_ptr<Entity>> getList();
+	std::vector<std::shared_ptr<Entity>> getListByType(const char* entityType);
+	float getEntityCollisionRadiusByType(const char* entityType);
 };

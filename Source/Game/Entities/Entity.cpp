@@ -2,7 +2,12 @@
 
 void Entity::update(float deltaTime)
 {
-	std::cout << "Entity::Update()" << std::endl;
+	std::cout << "Entity::update()" << std::endl;
+}
+
+void Entity::lateUpdate(float deltaTime)
+{
+	std::cout << "Entity::lateUpdate()" << std::endl;
 }
 
 sf::Sprite Entity::getSprite()
@@ -18,12 +23,17 @@ std::string Entity::getType()
 
 const int Entity::getRenderLayer()
 {
-	return renderLayer;
+	return m_renderLayer;
 }
 
 Vector2 Entity::getPosition()
 {
 	return m_position;
+}
+
+float Entity::getCollisionRange()
+{
+	return m_collisionRange;
 }
 
 bool Entity::shouldBeDestroyed()

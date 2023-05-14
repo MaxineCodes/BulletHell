@@ -25,7 +25,7 @@ public:
 	unsigned int m_enemyKillCount = 0;
 
 public:
-	//void playerHit();
-	//void enemyKilled();
+	void playerHit();
+	void enemyKilled();
 };
 

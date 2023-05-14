@@ -2,9 +2,12 @@
 
 // Game globals
 // Accessed through GameGlobals.h
+int APPLICATION_WINDOWWIDTH;
+int APPLICATION_WINDOWHEIGHT;
 int GAME_WINDOWWIDTH;
 int GAME_WINDOWHEIGHT;
 int GAME_FRAMERATE;
+int GAME_SCALE;
 
 std::unique_ptr<Renderer>        GAME_RENDERER;
 std::unique_ptr<ResourceManager> GAME_RESOURCEMANAGER;
@@ -14,26 +17,23 @@ std::unique_ptr<SessionState>    GAME_SESSIONSTATE;
 
 Game::Game(GameSettings& settings)
 {
-    GAME_WINDOWWIDTH = settings.WINDOWWIDTH;
-    GAME_WINDOWHEIGHT = settings.WINDOWHEIGHT;
+    APPLICATION_WINDOWWIDTH = settings.WINDOWWIDTH;
+    APPLICATION_WINDOWHEIGHT = settings.WINDOWHEIGHT;
+    GAME_WINDOWWIDTH = settings.GAME_WINDOWWIDTH;
+    GAME_WINDOWHEIGHT = settings.GAME_WINDOWHEIGHT;
     GAME_FRAMERATE = settings.FRAMERATE;
+    GAME_SCALE = 1;
 
     // Debug prints
-    std::cout << "WINDOWHEIGHT=" << GAME_WINDOWWIDTH << std::endl;
-    std::cout << "WINDOWWIDTH=" << GAME_WINDOWHEIGHT << std::endl;
-    std::cout << "FRAMERATE=" << GAME_FRAMERATE << std::endl;
-
-    initialize(settings);
-}
-
-
-// Initializes the game
-void Game::initialize(GameSettings& settings)
-{
-    std::cout << "Game::initialize()" << std::endl;
+    std::cout << "APPLICATION_WINDOWWIDTH=" << APPLICATION_WINDOWWIDTH << std::endl;
+    std::cout << "APPLICATION_WINDOWHEIGHT=" << APPLICATION_WINDOWHEIGHT << std::endl;
+    std::cout << "GAME_WINDOWWIDTH=" << GAME_WINDOWWIDTH << std::endl;
+    std::cout << "GAME_WINDOWHEIGHT=" << GAME_WINDOWHEIGHT << std::endl;
+    std::cout << "GAME_FRAMERATE=" << GAME_FRAMERATE << std::endl;
+    std::cout << "GAME_SCALE=" << GAME_SCALE << std::endl;
 
     std::cout << "Creating Game render window" << std::endl;
-    sf::VideoMode VideoMode(GAME_WINDOWWIDTH, GAME_WINDOWHEIGHT);
+    sf::VideoMode VideoMode(APPLICATION_WINDOWWIDTH, APPLICATION_WINDOWHEIGHT);
     m_gameWindow = std::make_shared<sf::RenderWindow>(VideoMode, settings.WINDOWTITLE);
 
     std::cout << "Initializing: GAME_RENDERER" << std::endl;
@@ -57,6 +57,13 @@ void Game::initialize(GameSettings& settings)
 }
 
 
+// Initializes the game
+void Game::initialize(GameSettings& settings)
+{
+
+}
+
+
 // Fancy main menu :)
 void Game::mainMenu()
 {
@@ -67,10 +74,14 @@ void Game::mainMenu()
 // Called before the first update
 void Game::start()
 {
-    std::cout << "Game::start()" << std::endl;
-
     auto player = std::make_shared<Player>();
     GAME_ENTITYLIST->add(player);
+
+    const float startPositionX = static_cast<float>(GAME_WINDOWWIDTH) / 2 * 1; // 2:1 ratio
+    const float startPositionY = static_cast<float>(GAME_WINDOWHEIGHT) / 5 * 1; // 5:1 ratio
+
+    auto enemy1 = std::make_shared<Destroyer>(Vector2(startPositionX, startPositionY));
+    GAME_ENTITYLIST->add(enemy1);
 }
 
 

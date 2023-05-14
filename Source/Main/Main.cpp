@@ -36,7 +36,7 @@
 //           [linkedin.com/in/maxinemeijboom]
 //  
 /////////////////////////////////////////////////////////////////////////////////////////////
-#include "../GameCore/Game.h"
+#include "../Game/Game.h"
 
 int main()
 {

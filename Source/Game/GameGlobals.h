@@ -25,9 +25,14 @@
 
 
 // Assigned in Game constructor
-extern int GAME_WINDOWWIDTH;
+extern int APPLICATION_WINDOWWIDTH; // <- Windowsize including the UI 
+extern int APPLICATION_WINDOWHEIGHT;
+
+// Assigned in Game constructor
+extern int GAME_WINDOWWIDTH;		//	<- Windowsize of the playable area
 extern int GAME_WINDOWHEIGHT;
 extern int GAME_FRAMERATE;
+extern int GAME_SCALE;
 
 // Assigned in Game::initialize
 extern std::unique_ptr<SessionState>	GAME_SESSIONSTATE;

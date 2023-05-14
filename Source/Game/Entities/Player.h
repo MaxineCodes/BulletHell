@@ -11,25 +11,22 @@
 #pragma once
 
 #include "Entity.h"
-#include "EntityList.h"
-
-class EntityList;
 
 
 class Player : public Entity
 {
-public:
-	const int renderLayer = 6;
+private:
+	const int m_renderLayer = 3;
 	std::string m_type = "Player";
 	Vector2 m_position = Vector2(0.0f, 0.0f);
+	float m_collisionRange = 1;
 
-private:
-	const sf::Time m_shootDelay = sf::milliseconds(10);
-	const float m_playerScale = 1.5f;
+	const int m_shootDelay = 75; // <- in miliseconds
+	const float m_size = 1.5f;
 	const float m_hitboxSpriteScale = 3.0f;
-	const float m_normalSpeed = 0.055f;
-	const float m_slowSpeed = 0.015f;
-	const float m_wallpadding = 15.0f;//15.0f;
+	const float m_normalSpeed = 0.065f;
+	const float m_slowSpeed = 0.020f;
+	const float m_wallpadding = 15.0f;
 
 	sf::Sprite m_playerSprite;
 
@@ -42,9 +39,6 @@ private:
 	sf::Time elapsedTime;
 	sf::Time frameTime;
 
-	int m_gameWindowWidth;
-	int m_gameWindowHeight;
-
 	Vector2 m_direction = Vector2(0.0f, 0.0f);
 
 	bool m_slowmode = false;
@@ -55,17 +49,19 @@ public:
 	~Player() {}
 
 	void update(float deltaTime);
+	void lateUpdate(float deltaTime);
 	bool shouldBeDestroyed();
 
 	sf::Sprite getSprite();
 	std::string getType();
 	const int getRenderLayer();
 	Vector2 getPosition();
+	float getCollisionRange();
 
 private:
 	void init();
 	void loadResources();
-	sf::Time shoot();
+	void shoot();
 	void movement(float SPEED, int WINDOWWIDTH, int WINDOWHEIGHT, float deltaTime);
 	bool isShooting();
 };

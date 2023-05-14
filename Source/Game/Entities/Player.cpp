@@ -3,6 +3,7 @@
 
 #include "../Math/Colllision.h"
 #include "../Math/GameMath.h"
+#include "Bullets/PlayerBullet.h"
 
 #include "../GameGlobals.h"
 
@@ -18,7 +19,7 @@ void Player::init()
 {
 	// Set player sprite scale and set origin aka pivot to center
 	m_playerSprite.setOrigin(float(32 / 2), float(32 / 2 + 32 / 6));
-	m_playerSprite.setScale(m_playerScale, m_playerScale);
+	m_playerSprite.setScale(m_size * GAME_SCALE, m_size * GAME_SCALE);
 
 	// Set starting position of player
 	const float startPositionX = static_cast<float>(GAME_WINDOWWIDTH)  / 2 * 1; // 2:1 ratio
@@ -38,12 +39,17 @@ std::string Player::getType()
 
 const int Player::getRenderLayer()
 {
-	return renderLayer;
+	return m_renderLayer;
 }
 
 Vector2 Player::getPosition()
 {
 	return m_position;
+}
+
+float Player::getCollisionRange()
+{
+	return m_collisionRange;
 }
 
 // Every update
@@ -73,10 +79,22 @@ void Player::update(float deltaTime)
 		m_playerSprite.setTexture(m_playerTexture);
 	}
 
-	if (m_shooting) 
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::X))
 	{
-		timeOfLastBullet = shoot();
+		if (clock.getElapsedTime().asMilliseconds() >= m_shootDelay)
+		{
+			shoot();
+			clock.restart();
+		}
 	}
+
+	if (hasCollided("Bullet", m_position, m_collisionRange))
+		std::cout << "I am hit!!" << std::endl;
+}
+
+void Player::lateUpdate(float deltaTime)
+{
+
 }
 
 bool Player::shouldBeDestroyed()
@@ -87,65 +105,49 @@ bool Player::shouldBeDestroyed()
 // Load player resources
 void Player::loadResources()
 {
-	std::cout << "Player::LoadResources()" << std::endl;
-
 	m_playerTexture = GAME_RESOURCEMANAGER->getTexture("Cirno.png");
-	m_playerSprite.setTexture(m_playerTexture);
-
 	m_hitBoxTexture = GAME_RESOURCEMANAGER->getTexture("Flandre.png");
-	m_smallBulletTexture = GAME_RESOURCEMANAGER->getTexture("PlayerBulletSmall.png");
-	m_largeBulletTexture = GAME_RESOURCEMANAGER->getTexture("PlayerBulletLarge.png");
+	m_playerSprite.setTexture(m_playerTexture);
 }
 
-sf::Time Player::shoot()
+void Player::shoot()
 {
-	frameTime = clock.getElapsedTime();
-	elapsedTime += clock.restart();
-
-	if (frameTime >= m_shootDelay)
-	{	
-		// Shoot
-		float bulletSpeed = 0.15f;
-		float bulletSize = 2.5f;
-		float bulletSpread = 0.075f;
-		const char* texture = "PlayerBulletLarge.png";
-		if (m_slowmode) 
-		{
-			texture = "PlayerBulletSmall.png";
-			bulletSpeed = 0.55f;
-			bulletSpread = 0.015f;
-			bulletSize = 1.5f;
-		}
-
-		auto bullet0 = std::make_shared<Bullet>(m_position, Vector2(0.0f, -1.0f), bulletSpeed, bulletSize, texture);
-		bullet0.get()->canHurtPlayer = false;
-		bullet0.get()->canHurtEnemy = true;
-		GAME_ENTITYLIST->add(bullet0);
-
-		auto bullet1 = std::make_shared<Bullet>(m_position, Vector2(-bulletSpread, -0.9f), bulletSpeed, bulletSize, texture);
-		bullet1.get()->canHurtPlayer = false;
-		bullet1.get()->canHurtEnemy = true;
-		GAME_ENTITYLIST->add(bullet1);
-
-		auto bullet2 = std::make_shared<Bullet>(m_position, Vector2(-bulletSpread*2, -0.8f), bulletSpeed, bulletSize, texture);
-		bullet2.get()->canHurtPlayer = false;
-		bullet2.get()->canHurtEnemy = true;
-		GAME_ENTITYLIST->add(bullet2);
-
-		auto bullet3 = std::make_shared<Bullet>(m_position, Vector2(bulletSpread, -0.9f), bulletSpeed, bulletSize, texture);
-		bullet3.get()->canHurtPlayer = false;
-		bullet3.get()->canHurtEnemy = true;
-		GAME_ENTITYLIST->add(bullet3);
-
-		auto bullet4 = std::make_shared<Bullet>(m_position, Vector2(bulletSpread*2, -0.8f), bulletSpeed, bulletSize, texture);
-		bullet4.get()->canHurtPlayer = false;
-		bullet4.get()->canHurtEnemy = true;
-		GAME_ENTITYLIST->add(bullet4);
-
-		frameTime = clock.restart();
+	float bulletSpeed = 0.55f;
+	float bulletSize = 2.5f;
+	float bulletSpread = 0.055f;
+	float bulletOffset = 15.0f;
+	float bulletHeightOffset = 2.0f;
+	const char* texture = "PlayerBulletLarge.png";
+	if (m_slowmode) 
+	{
+		texture = "PlayerBulletSmall.png";
+		bulletSpeed = 0.55f;
+		bulletSpread = 0.005f;
+		bulletSize = 4.0f;
+		float bulletOffset = 5.0f;
 	}
+	
+	Vector2 pos0(m_position.x, m_position.y - bulletHeightOffset*2);
+	Vector2 pos1(m_position.x - bulletOffset, m_position.y - bulletHeightOffset);
+	Vector2 pos2(m_position.x - bulletOffset*2, m_position.y);
+	Vector2 pos3(m_position.x + bulletOffset, m_position.y - bulletHeightOffset);
+	Vector2 pos4(m_position.x + bulletOffset*2, m_position.y);
+	
+	auto bullet0 = std::make_shared<PlayerBullet>(pos0, Vector2(0.0f, -1.0f), bulletSpeed, bulletSize, texture);
+	GAME_ENTITYLIST->add(bullet0);
+	
+	auto bullet1 = std::make_shared<PlayerBullet>(pos1, Vector2(-bulletSpread, -0.9f), bulletSpeed, bulletSize, texture);
+	GAME_ENTITYLIST->add(bullet1);
+	
+	auto bullet2 = std::make_shared<PlayerBullet>(pos2, Vector2(-bulletSpread*2, -0.8f), bulletSpeed, bulletSize, texture);
+	GAME_ENTITYLIST->add(bullet2);
+	
+	auto bullet3 = std::make_shared<PlayerBullet>(pos3, Vector2(bulletSpread, -0.9f), bulletSpeed, bulletSize, texture);
+	GAME_ENTITYLIST->add(bullet3);
+	
+	auto bullet4 = std::make_shared<PlayerBullet>(pos4, Vector2(bulletSpread*2, -0.8f), bulletSpeed, bulletSize, texture);
+	GAME_ENTITYLIST->add(bullet4);
 
-	return frameTime;
 }
 
 // Movement inputs

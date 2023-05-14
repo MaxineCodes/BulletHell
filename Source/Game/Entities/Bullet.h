@@ -15,15 +15,12 @@
 
 class Bullet : public Entity
 {
-public:
-	const int renderLayer = 3;
+private:
+	const int m_renderLayer = 6;
 	std::string m_type = "Bullet";
 	Vector2 m_position = Vector2(0.0f, 0.0f);
+	float m_collisionRange = 1;
 
-	bool canHurtPlayer = true;
-	bool canHurtEnemy = false;
-
-private:
 	std::string m_textureName;
 	sf::Texture m_bulletTexture;
 	sf::Sprite m_bulletSprite;
@@ -33,6 +30,7 @@ private:
 	Vector2 m_direction = Vector2(0.0f, 0.0f);
 
 public:
+	Bullet() {}
 	Bullet(Vector2 startPosition, 
 		   Vector2 startDirection, 
 		   float speed, 
@@ -42,10 +40,12 @@ public:
 	~Bullet() { std::cout << "Bullet destroyed" << std::endl; }
 
 	void update(float deltaTime);
+	void lateUpdate(float deltaTime);
 	bool shouldBeDestroyed();
 
 	sf::Sprite getSprite();
 	std::string getType();
 	const int getRenderLayer();
 	Vector2 getPosition();
+	float getCollisionRange();
 };
