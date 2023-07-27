@@ -37,6 +37,10 @@ private:
 	const int m_layerCount = 7;
 	std::shared_ptr<sf::RenderWindow> m_gameWindow_ptr;
 
+	//std::unique_ptr<CanvasRenderer>
+	//float widthScale  = GAME_WINDOWWIDTH  / 100;
+	//float heightScale = GAME_WINDOWHEIGHT / 100;
+
 	sf::Texture m_backgroundTexture;
 	sf::Sprite m_backgroundSprite;
 
@@ -45,11 +49,16 @@ public:
 	Renderer(std::shared_ptr<sf::RenderWindow> gameRenderWindow);
 	~Renderer() {}
 
+	void render();
+	void renderGameUI();
+
+	void updateBackground();
+	void clear(sf::Color colour);
 	void draw(sf::Sprite sprite);
-
-	void setBackground();
-
 	void display();
 
-	void render();
+
+
+	// Deprecated
+	void drawAllEntities();
 };

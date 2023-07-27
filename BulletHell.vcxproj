@@ -158,6 +158,7 @@
     <ClCompile Include="Source\Game\Rendering\SpriteSwapper.cpp" />
     <ClCompile Include="Source\Game\Datatypes\Vector2.cpp" />
     <ClCompile Include="Source\Game\UI\UserInterface.cpp" />
+    <ClCompile Include="Source\Game\Entities\UI\UIGraphic.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Game\BulletPatterns\BulletPatterns.h" />
@@ -184,17 +185,22 @@
     <ClInclude Include="Source\Game\Rendering\SpriteSwapper.h" />
     <ClInclude Include="Source\Game\Datatypes\Vector2.h" />
     <ClInclude Include="Source\Game\UI\UserInterface.h" />
+    <ClInclude Include="Source\Game\Entities\UI\UIGraphic.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\Library\Downloads\Space Background.png" />
     <Image Include="Res\BulletPointBlue.png" />
     <Image Include="Res\Cirno.png" />
     <Image Include="Res\Flandre.png" />
     <Image Include="Res\Hitbox.png" />
+    <Image Include="Res\MainMenu.png" />
     <Image Include="Res\PlayerBulletLarge.png" />
     <Image Include="Res\PlayerBulletSmall.png" />
+    <Image Include="Res\PurpleSpaceBackground.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include=".gitattributes" />
+    <None Include=".gitignore" />
+    <None Include="README.md" />
     <None Include="Res\Bullets.aseprite" />
     <None Include="Res\Cirno.aseprite" />
     <None Include="Res\Flandre.aseprite" />

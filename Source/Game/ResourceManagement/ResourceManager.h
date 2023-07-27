@@ -26,7 +26,9 @@ public:
 	ResourceManager() {}
 	~ResourceManager() {}
 
-	bool loadResources();
+	bool loadResources(); // Start loading all the resources. If one fails, returns false.
+	sf::Texture& getTexture(const char* textureName);  // Grab a sf::Texture by name, ex: "Hitbox.png" 
 
-	sf::Texture& getTexture(const char* textureName);
+	const int getTextureSize(const char* textureName);    // Get the the amount of pixels of the width of the sprite.
+	const int getTextureSize(const sf::Texture& texture); // Get the the amount of pixels of the width of the sprite.
 };

@@ -27,6 +27,7 @@ public:
 
 	void update(float deltaTime);
 	void lateUpdate(float deltaTime);
+	void draw();
 	bool shouldBeDestroyed();
 
 	sf::Sprite getSprite();

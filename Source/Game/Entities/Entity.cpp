@@ -10,6 +10,11 @@ void Entity::lateUpdate(float deltaTime)
 	std::cout << "Entity::lateUpdate()" << std::endl;
 }
 
+void Entity::draw()
+{
+	//std::cout << "Entity::draw()" << std::endl;
+}
+
 sf::Sprite Entity::getSprite()
 {
 	std::cout << "Entity::getSprite()" << std::endl;

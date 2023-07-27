@@ -36,8 +36,9 @@ public:
 
 	virtual void update(float deltaTime);
 	virtual void lateUpdate(float deltaTime);
-	virtual bool shouldBeDestroyed();
+	virtual void draw();
 
+	virtual bool shouldBeDestroyed();
 	virtual sf::Sprite getSprite();
 	virtual std::string getType();
 	virtual const int getRenderLayer();

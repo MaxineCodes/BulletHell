@@ -19,7 +19,7 @@ private:
 	const int m_renderLayer = 3;
 	std::string m_type = "Player";
 	Vector2 m_position = Vector2(0.0f, 0.0f);
-	float m_collisionRange = 1;
+	float m_collisionRange = 2;
 
 	const int m_shootDelay = 75; // <- in miliseconds
 	const float m_size = 1.5f;
@@ -29,9 +29,10 @@ private:
 	const float m_wallpadding = 15.0f;
 
 	sf::Sprite m_playerSprite;
+	sf::Sprite m_hitboxSprite;
 
 	sf::Texture m_playerTexture;
-	sf::Texture m_hitBoxTexture;
+	sf::Texture m_hitboxTexture;
 	sf::Texture m_smallBulletTexture;
 	sf::Texture m_largeBulletTexture;
 
@@ -50,8 +51,9 @@ public:
 
 	void update(float deltaTime);
 	void lateUpdate(float deltaTime);
-	bool shouldBeDestroyed();
+	void draw();
 
+	bool shouldBeDestroyed();
 	sf::Sprite getSprite();
 	std::string getType();
 	const int getRenderLayer();

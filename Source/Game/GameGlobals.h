@@ -5,12 +5,12 @@
 //	Description:
 //	 Storing global variables and pointers for access throughout the whole application.
 //	 These global variables are assigned in the Game class.
-//	 Everything is in CAPS to make it easily readable which variables are GLOBAL.
+//	 Everything is written in CAPS to make it easily readable which variables are GLOBAL.
 // 
 //	 The compiler complains if the GameGlobals.h is included in the header file.
-//	 So we include it in the .cpp file instead.
+//	 So we include it in the .cpp file of the file where we want to use the globals instead.
 // 
-//	 These variables are assigned inside the Game.cpp file.
+//	 These variables/pointers are assigned inside the Game.cpp file.
 // 
 //  
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -18,21 +18,16 @@
 
 #include <memory>
 
+#include "../Settings/GameSettings.h"
 #include "LevelSystem/SessionState.h"
 #include "Rendering/Renderer.h"
 #include "ResourceManagement/ResourceManager.h"
 #include "Entities/EntityList.h"
 
 
-// Assigned in Game constructor
-extern int APPLICATION_WINDOWWIDTH; // <- Windowsize including the UI 
-extern int APPLICATION_WINDOWHEIGHT;
-
-// Assigned in Game constructor
-extern int GAME_WINDOWWIDTH;		//	<- Windowsize of the playable area
-extern int GAME_WINDOWHEIGHT;
-extern int GAME_FRAMERATE;
-extern int GAME_SCALE;
+// Assigned in Game class constructor
+extern GameSettings	GAME_SETTINGS;
+extern float GAME_SCALE;
 
 // Assigned in Game::initialize
 extern std::unique_ptr<SessionState>	GAME_SESSIONSTATE;

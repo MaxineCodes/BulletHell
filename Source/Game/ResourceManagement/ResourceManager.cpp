@@ -26,3 +26,16 @@ sf::Texture& ResourceManager::getTexture(const char* textureName)
 {
 	return m_textureHolder.get(textureName);
 }
+
+const int ResourceManager::getTextureSize(const char* textureName)
+{
+	sf::Texture texture = m_textureHolder.get(textureName);
+	return getTextureSize(texture);
+}
+
+const int ResourceManager::getTextureSize(const sf::Texture& texture)
+{
+	const int textureWidth = texture.getSize().x;
+	//const int textureHeight = texture.getSize().y;
+	return textureWidth;
+}

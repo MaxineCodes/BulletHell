@@ -2,13 +2,8 @@
 
 // Game globals
 // Accessed through GameGlobals.h
-int APPLICATION_WINDOWWIDTH;
-int APPLICATION_WINDOWHEIGHT;
-int GAME_WINDOWWIDTH;
-int GAME_WINDOWHEIGHT;
-int GAME_FRAMERATE;
-int GAME_SCALE;
-
+float GAME_SCALE;
+GameSettings GAME_SETTINGS;
 std::unique_ptr<Renderer>        GAME_RENDERER;
 std::unique_ptr<ResourceManager> GAME_RESOURCEMANAGER;
 std::unique_ptr<EntityList>      GAME_ENTITYLIST;
@@ -17,29 +12,23 @@ std::unique_ptr<SessionState>    GAME_SESSIONSTATE;
 
 Game::Game(GameSettings& settings)
 {
-    APPLICATION_WINDOWWIDTH = settings.WINDOWWIDTH;
-    APPLICATION_WINDOWHEIGHT = settings.WINDOWHEIGHT;
-    GAME_WINDOWWIDTH = settings.GAME_WINDOWWIDTH;
-    GAME_WINDOWHEIGHT = settings.GAME_WINDOWHEIGHT;
-    GAME_FRAMERATE = settings.FRAMERATE;
-    GAME_SCALE = 1;
 
+    GAME_SETTINGS = settings;
     // Debug prints
-    std::cout << "APPLICATION_WINDOWWIDTH=" << APPLICATION_WINDOWWIDTH << std::endl;
-    std::cout << "APPLICATION_WINDOWHEIGHT=" << APPLICATION_WINDOWHEIGHT << std::endl;
-    std::cout << "GAME_WINDOWWIDTH=" << GAME_WINDOWWIDTH << std::endl;
-    std::cout << "GAME_WINDOWHEIGHT=" << GAME_WINDOWHEIGHT << std::endl;
-    std::cout << "GAME_FRAMERATE=" << GAME_FRAMERATE << std::endl;
+    settings.print();
+
+    GAME_SCALE = float(GAME_SETTINGS.WINDOWHEIGHT) / float(1440);
+    std::cout << "GAME_SETTINGS.WINDOWHEIGHT=" << GAME_SETTINGS.WINDOWHEIGHT << std::endl;
     std::cout << "GAME_SCALE=" << GAME_SCALE << std::endl;
 
     std::cout << "Creating Game render window" << std::endl;
-    sf::VideoMode VideoMode(APPLICATION_WINDOWWIDTH, APPLICATION_WINDOWHEIGHT);
-    m_gameWindow = std::make_shared<sf::RenderWindow>(VideoMode, settings.WINDOWTITLE);
+    sf::VideoMode VideoMode(GAME_SETTINGS.WINDOWWIDTH, GAME_SETTINGS.WINDOWHEIGHT);
+    m_gameWindow = std::make_shared<sf::RenderWindow>(VideoMode, GAME_SETTINGS.WINDOWTITLE);
 
     std::cout << "Initializing: GAME_RESOURCEMANAGER" << std::endl;
     GAME_RESOURCEMANAGER = std::make_unique<ResourceManager>();
     if (!GAME_RESOURCEMANAGER->loadResources())
-        std::cout << " ERROR: Loading resources failed" << std::endl;
+        std::cout << "[ ! ] ERROR: Loading resources failed" << std::endl;
 
     std::cout << "Initializing: GAME_SESSIONSTATE" << std::endl;
     GAME_SESSIONSTATE = std::make_unique<SessionState>();
@@ -57,17 +46,27 @@ Game::Game(GameSettings& settings)
 }
 
 
-// Initializes the game
-void Game::initialize(GameSettings& settings)
-{
-
-}
-
-
 // Fancy main menu :)
 void Game::mainMenu()
 {
+    std::cout << "Starting Main Menu" << std::endl;
 
+    sf::Sprite mainMenuSprite;
+    sf::Texture mainMenuTexture = GAME_RESOURCEMANAGER->getTexture("MainMenu.png");
+    mainMenuSprite.setPosition(0.0f, 0.0f);
+    mainMenuSprite.setScale(30 * GAME_SCALE, 30 * GAME_SCALE);
+    mainMenuSprite.setTexture(mainMenuTexture);
+
+    //// Repeat until space is pressed
+    while(!sf::Keyboard::isKeyPressed(GAME_SETTINGS.KEYBINDS.AFFIRM))
+    {
+        GAME_RENDERER->clear(sf::Color::Magenta);
+        GAME_RENDERER->draw(mainMenuSprite);
+        GAME_RENDERER->display();
+    }
+
+    std::cout << "Space pressed, exiting main menu and moving on to the game" << std::endl;
+    GAME_RENDERER->clear(sf::Color::Magenta);
 }
 
 
@@ -77,11 +76,15 @@ void Game::start()
     auto player = std::make_shared<Player>();
     GAME_ENTITYLIST->add(player);
 
-    const float startPositionX = static_cast<float>(GAME_WINDOWWIDTH) / 2 * 1; // 2:1 ratio
-    const float startPositionY = static_cast<float>(GAME_WINDOWHEIGHT) / 5 * 1; // 5:1 ratio
+    const float startPositionX = static_cast<float>(GAME_SETTINGS.WINDOWWIDTH) / 2 * 1; // 2:1 ratio , middle
+    const float startPositionY = static_cast<float>(GAME_SETTINGS.WINDOWHEIGHT) / 5 * 1; // 5:1 ratio , somewhere close to the bottom
 
     auto enemy1 = std::make_shared<Destroyer>(Vector2(startPositionX, startPositionY));
     GAME_ENTITYLIST->add(enemy1);
+
+    
+    //auto testBullet = std::make_shared<Bullet>(Vector2(startPositionX, startPositionX), Vector2(), 0.0f, 5, "BulletPointBlue.png");
+    //GAME_ENTITYLIST->add(testBullet);
 }
 
 
@@ -102,17 +105,17 @@ void Game::initializeGameloop()
         }
 
         // Calculate delta time
-        dt = deltaClock.restart();
-        float deltaTime = float(dt.asMilliseconds());
-        deltaTime = 1;
+        //dt = deltaClock.restart();
+        float deltaTime = deltaClock.restart().asSeconds();
+        //std::cout << "FRAME TIME: " << deltaTime << std::endl;
+        deltaTime = deltaTime * 10000; // Multiply it by ten thousand so the numbers we tweak need to in code aren't insanely big.
+        deltaTime = deltaTime * GAME_SCALE; // Multiply by game scale, so movement is 0.5x the speed if the game is 0.5x the size.
 
         // Update
-        GAME_ENTITYLIST->updateAllEntities(deltaTime);
+        GAME_ENTITYLIST->update(deltaTime);
+        GAME_ENTITYLIST->lateUpdate(deltaTime);
 
-        // Late update
-        GAME_ENTITYLIST->lateUpdateAllEntities(deltaTime);
-
-        // And of course, render
+        // Render
         GAME_RENDERER->render();
     }
 }

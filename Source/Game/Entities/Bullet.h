@@ -19,7 +19,7 @@ private:
 	const int m_renderLayer = 6;
 	std::string m_type = "Bullet";
 	Vector2 m_position = Vector2(0.0f, 0.0f);
-	float m_collisionRange = 1;
+	float m_collisionRange = 20;
 
 	std::string m_textureName;
 	sf::Texture m_bulletTexture;
@@ -37,10 +37,11 @@ public:
 		   float size, 
 		   const char* textureName);
 
-	~Bullet() { std::cout << "Bullet destroyed" << std::endl; }
+	~Bullet() { /* std::cout << "Bullet destroyed" << std::endl; */ }
 
 	void update(float deltaTime);
 	void lateUpdate(float deltaTime);
+	void draw();
 	bool shouldBeDestroyed();
 
 	sf::Sprite getSprite();

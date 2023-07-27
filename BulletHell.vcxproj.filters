@@ -84,6 +84,9 @@
     <ClCompile Include="Source\Game\BulletPatterns\BulletPatterns.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Game\Entities\UI\UIGraphic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Game\Game.h">
@@ -158,6 +161,9 @@
     <ClInclude Include="Source\Game\BulletPatterns\BulletPatterns.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Game\Entities\UI\UIGraphic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Res\BulletPointBlue.png">
@@ -178,7 +184,10 @@
     <Image Include="Res\PlayerBulletSmall.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\..\..\..\Library\Downloads\Space Background.png">
+    <Image Include="Res\PurpleSpaceBackground.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\MainMenu.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
@@ -187,5 +196,8 @@
     <None Include="Res\Cirno.aseprite" />
     <None Include="Res\Flandre.aseprite" />
     <None Include="Res\Hitbox.aseprite" />
+    <None Include="README.md" />
+    <None Include=".gitattributes" />
+    <None Include=".gitignore" />
   </ItemGroup>
 </Project>

@@ -34,8 +34,8 @@ void Destroyer::update(float deltaTime)
 	if (secondsElapsed >= 2 && secondsElapsed <= 4)
 	{
 		state = 1;
-		Vector2 target(static_cast<float>(GAME_WINDOWWIDTH) / 3*1, static_cast<float>(GAME_WINDOWHEIGHT) / 2*1);
-		m_position = moveTo(target, 0.05f);
+		Vector2 target(static_cast<float>(GAME_SETTINGS.GAME_WINDOWWIDTH) / 3*1, static_cast<float>(GAME_SETTINGS.GAME_WINDOWHEIGHT) / 2*1);
+		m_position = moveTo(target, 0.05f * deltaTime);
 	}
 
 	if (secondsElapsed >= 2 && secondsElapsed <= 6)
@@ -46,8 +46,8 @@ void Destroyer::update(float deltaTime)
 	else if (secondsElapsed >= 6 && secondsElapsed <= 24)
 	{
 		state = 3;
-		Vector2 target(static_cast<float>(GAME_WINDOWWIDTH) / 2 * 1, static_cast<float>(GAME_WINDOWHEIGHT) / 5 * 1);
-		m_position = moveTo(target, 0.05f);
+		Vector2 target(static_cast<float>(GAME_SETTINGS.GAME_WINDOWWIDTH) / 2 * 1, static_cast<float>(GAME_SETTINGS.GAME_WINDOWHEIGHT) / 5 * 1);
+		m_position = moveTo(target, 0.05f * deltaTime);
 	}
 
 	else if (secondsElapsed >= 24)
@@ -67,13 +67,18 @@ void Destroyer::lateUpdate(float deltaTime)
 {
 	if (hasCollided("PlayerBullet", m_position, m_collisionRange))
 	{
-		std::cout << "Enemy is hit!!" << std::endl;
+		//std::cout << "Enemy is hit!!" << std::endl;
 
 		m_health = m_health - 750;
 
 		m_sprite.setColor(sf::Color::Cyan);
 		hitClock.restart();
 	}
+}
+
+void Destroyer::draw()
+{
+	GAME_RENDERER->draw(m_sprite);
 }
 
 bool Destroyer::shouldBeDestroyed()

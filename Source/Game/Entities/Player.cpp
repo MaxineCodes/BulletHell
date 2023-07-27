@@ -6,6 +6,7 @@
 #include "Bullets/PlayerBullet.h"
 
 #include "../GameGlobals.h"
+#include "../../Settings/GameSettings.h"
 
 // Constructor
 Player::Player()
@@ -17,14 +18,21 @@ Player::Player()
 // Initialize
 void Player::init()
 {
+	const int playerTextureSize = GAME_RESOURCEMANAGER->getTextureSize(m_playerTexture);
+	const int hitboxTextureSize = GAME_RESOURCEMANAGER->getTextureSize(m_hitboxTexture);
+
 	// Set player sprite scale and set origin aka pivot to center
-	m_playerSprite.setOrigin(float(32 / 2), float(32 / 2 + 32 / 6));
+	m_playerSprite.setOrigin(float(playerTextureSize / 2), float(playerTextureSize / 2 + playerTextureSize / 6));
 	m_playerSprite.setScale(m_size * GAME_SCALE, m_size * GAME_SCALE);
 
+	m_hitboxSprite.setOrigin(float(hitboxTextureSize / 2), float(hitboxTextureSize / 2 + hitboxTextureSize / 24));
+	m_hitboxSprite.setScale(m_collisionRange*2 * GAME_SCALE, m_collisionRange*2 * GAME_SCALE);
+
 	// Set starting position of player
-	const float startPositionX = static_cast<float>(GAME_WINDOWWIDTH)  / 2 * 1; // 2:1 ratio
-	const float startPositionY = static_cast<float>(GAME_WINDOWHEIGHT) / 5 * 4; // 5:4 ratio
+	const float startPositionX = static_cast<float>(GAME_SETTINGS.GAME_WINDOWWIDTH)  / 2 * 1; // 2:1 ratio
+	const float startPositionY = static_cast<float>(GAME_SETTINGS.GAME_WINDOWHEIGHT) / 5 * 4; // 5:4 ratio
 	m_playerSprite.setPosition(startPositionX, startPositionY);
+	m_hitboxSprite.setPosition(startPositionX, startPositionY);
 }
 
 sf::Sprite Player::getSprite()
@@ -44,7 +52,10 @@ const int Player::getRenderLayer()
 
 Vector2 Player::getPosition()
 {
-	return m_position;
+	//return sprite position + half the sprite size in pixels, multiplied by the sprite size multiplier
+	//return Vector2(m_hitboxSprite.getPosition().x + float(16 * m_size), m_hitboxSprite.getPosition().y + float(16 * m_size));
+
+	return Vector2(m_hitboxSprite.getPosition().x, m_hitboxSprite.getPosition().y);
 }
 
 float Player::getCollisionRange()
@@ -55,31 +66,16 @@ float Player::getCollisionRange()
 // Every update
 void Player::update(float deltaTime)
 {
-	//sf::Time frameTime = clock.getElapsedTime();
-	//sf::Time elapsedTime; //= clock.restart();
-	//elapsedTime += clock.restart();
-	//const unsigned int seconds = static_cast<unsigned int>(elapsedTime.asMilliseconds());
-	//timer.value -= elapsed.asMiliseconds();
-	sf::Time timeOfLastBullet;
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) m_slowmode = true;
+	if (sf::Keyboard::isKeyPressed(GAME_SETTINGS.KEYBINDS.SLOW))
+		 m_slowmode = true;
 	else m_slowmode = false;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::X)) m_shooting = true;
-	else m_shooting = false;
-
 	if (m_slowmode) 
-	{
-		movement(m_slowSpeed, GAME_WINDOWWIDTH, GAME_WINDOWHEIGHT, deltaTime);
-		m_playerSprite.setTexture(m_hitBoxTexture);
-	}
-	else
-	{
-		movement(m_normalSpeed, GAME_WINDOWWIDTH, GAME_WINDOWHEIGHT, deltaTime);
-		m_playerSprite.setTexture(m_playerTexture);
-	}
+		movement(m_slowSpeed, GAME_SETTINGS.GAME_WINDOWWIDTH, GAME_SETTINGS.GAME_WINDOWHEIGHT, deltaTime);
+	else 
+		movement(m_normalSpeed, GAME_SETTINGS.GAME_WINDOWWIDTH, GAME_SETTINGS.GAME_WINDOWHEIGHT, deltaTime);
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::X))
+	if (sf::Keyboard::isKeyPressed(GAME_SETTINGS.KEYBINDS.SHOOT))
 	{
 		if (clock.getElapsedTime().asMilliseconds() >= m_shootDelay)
 		{
@@ -88,13 +84,24 @@ void Player::update(float deltaTime)
 		}
 	}
 
-	if (hasCollided("Bullet", m_position, m_collisionRange))
+	if (hasCollided("Bullet", getPosition(), m_collisionRange))
 		std::cout << "I am hit!!" << std::endl;
+	//else
+	//	std::cout << "" << std::endl;
+
 }
 
 void Player::lateUpdate(float deltaTime)
 {
 
+}
+
+void Player::draw()
+{
+	GAME_RENDERER->draw(m_playerSprite);
+
+	if (m_slowmode)
+		GAME_RENDERER->draw(m_hitboxSprite);
 }
 
 bool Player::shouldBeDestroyed()
@@ -106,22 +113,24 @@ bool Player::shouldBeDestroyed()
 void Player::loadResources()
 {
 	m_playerTexture = GAME_RESOURCEMANAGER->getTexture("Cirno.png");
-	m_hitBoxTexture = GAME_RESOURCEMANAGER->getTexture("Flandre.png");
 	m_playerSprite.setTexture(m_playerTexture);
+
+	m_hitboxTexture = GAME_RESOURCEMANAGER->getTexture("Hitbox.png");
+	m_hitboxSprite.setTexture(m_hitboxTexture);
 }
 
 void Player::shoot()
 {
-	float bulletSpeed = 0.55f;
+	float bulletSpeed = 0.35f;
 	float bulletSize = 2.5f;
 	float bulletSpread = 0.055f;
-	float bulletOffset = 15.0f;
+	float bulletOffset = 15.0f * GAME_SCALE;
 	float bulletHeightOffset = 2.0f;
 	const char* texture = "PlayerBulletLarge.png";
 	if (m_slowmode) 
 	{
 		texture = "PlayerBulletSmall.png";
-		bulletSpeed = 0.55f;
+		bulletSpeed = 0.35f;
 		bulletSpread = 0.005f;
 		bulletSize = 4.0f;
 		float bulletOffset = 5.0f;
@@ -159,13 +168,13 @@ void Player::movement(float SPEED, int WINDOWWIDTH, int WINDOWHEIGHT, float delt
 
 	// Setting direction vector through input
 	// and checks if player is not touching a edge
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !IsTouchingLeft(m_position, WINDOWWIDTH, WINDOWHEIGHT, m_wallpadding)) {
+	if (sf::Keyboard::isKeyPressed(GAME_SETTINGS.KEYBINDS.MOVE_LEFT) && !IsTouchingLeft(m_position, WINDOWWIDTH, WINDOWHEIGHT, m_wallpadding)) {
 		m_direction.x =	-1.0f; }
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !IsTouchingRight(m_position, WINDOWWIDTH, WINDOWHEIGHT, m_wallpadding)) {
+	if (sf::Keyboard::isKeyPressed(GAME_SETTINGS.KEYBINDS.MOVE_RIGHT) && !IsTouchingRight(m_position, WINDOWWIDTH, WINDOWHEIGHT, m_wallpadding)) {
 		m_direction.x =	 1.0f; }
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !IsTouchingUp(m_position, WINDOWWIDTH, WINDOWHEIGHT, m_wallpadding)) {
+	if (sf::Keyboard::isKeyPressed(GAME_SETTINGS.KEYBINDS.MOVE_UP) && !IsTouchingUp(m_position, WINDOWWIDTH, WINDOWHEIGHT, m_wallpadding)) {
 		m_direction.y =	-1.0f; }
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !IsTouchingDown(m_position, WINDOWWIDTH, WINDOWHEIGHT, m_wallpadding)) {
+	if (sf::Keyboard::isKeyPressed(GAME_SETTINGS.KEYBINDS.MOVE_DOWN) && !IsTouchingDown(m_position, WINDOWWIDTH, WINDOWHEIGHT, m_wallpadding)) {
 		m_direction.y =	 1.0f; }
 
 	// Normalize direction vector
@@ -173,6 +182,7 @@ void Player::movement(float SPEED, int WINDOWWIDTH, int WINDOWHEIGHT, float delt
 
 	// Move player to direction vector
 	m_playerSprite.move((m_direction.x * SPEED) * deltaTime, (m_direction.y * SPEED) * deltaTime);
+	m_hitboxSprite.setPosition(m_playerSprite.getPosition());
 
 	// Reset direction
 	m_direction = Vector2(0.0f, 0.0f);

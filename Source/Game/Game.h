@@ -83,7 +83,6 @@ public:
     ~Game() {}
 
 private:
-    void initialize(GameSettings& settings);
     void mainMenu();
     void start();
     void initializeGameloop();

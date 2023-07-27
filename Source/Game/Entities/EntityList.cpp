@@ -1,6 +1,6 @@
 #include "EntityList.h"
 
-void EntityList::updateAllEntities(float deltaTime)
+void EntityList::update(float deltaTime)
 {
     // Update all entities
     for (unsigned int i = 0; i < m_entityList.size(); i++)
@@ -10,7 +10,7 @@ void EntityList::updateAllEntities(float deltaTime)
 }
 
 
-void EntityList::lateUpdateAllEntities(float deltaTime)
+void EntityList::lateUpdate(float deltaTime)
 {
     // Late update all entities
     for (unsigned int i = 0; i < m_entityList.size(); i++)
@@ -26,6 +26,15 @@ void EntityList::lateUpdateAllEntities(float deltaTime)
             entityItr = m_entityList.erase(entityItr);
 
         else entityItr++;
+    }
+}
+
+void EntityList::draw()
+{
+    // draw all entities
+    for (unsigned int i = 0; i < m_entityList.size(); i++)
+    {
+        m_entityList[i]->draw();
     }
 }
 
