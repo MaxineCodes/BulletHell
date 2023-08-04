@@ -12,6 +12,7 @@ PlayerBullet::PlayerBullet(Vector2 startPosition, Vector2 startDirection, float 
 	m_direction = startDirection;
 	m_speed = speed;
 	m_size = size;
+	m_collisionRange = m_collisionRange * GAME_SCALE;
 
 	m_texture = GAME_RESOURCEMANAGER->getTexture(textureName);
 	m_sprite.setTexture(m_texture);
@@ -30,7 +31,7 @@ void PlayerBullet::update(float deltaTime)
 	// lag machine
 	//const float textureSize = float(getTextureDimensions(m_texture)[0]);
 
-	m_direction = Normalize(m_direction);
+	m_direction = normalize(m_direction);
 
 	m_sprite.move((m_direction.x * m_speed) * deltaTime, (m_direction.y * m_speed) * deltaTime);
 }
@@ -46,7 +47,7 @@ void PlayerBullet::draw()
 
 bool PlayerBullet::shouldBeDestroyed()
 {
-	if (!IsInGameArea(m_position, GAME_SETTINGS.GAME_WINDOWWIDTH, GAME_SETTINGS.GAME_WINDOWHEIGHT))
+	if (!isInGameArea(m_position, GAME_SETTINGS.GAME_WINDOWWIDTH, GAME_SETTINGS.GAME_WINDOWHEIGHT))
 		return true;
 
 	if (hasCollided("Enemy", m_position, m_collisionRange))

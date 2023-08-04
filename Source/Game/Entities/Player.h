@@ -19,7 +19,7 @@ private:
 	const int m_renderLayer = 3;
 	std::string m_type = "Player";
 	Vector2 m_position = Vector2(0.0f, 0.0f);
-	float m_collisionRange = 2;
+	float m_collisionRange = 8;
 
 	const int m_shootDelay = 75; // <- in miliseconds
 	const float m_size = 1.5f;

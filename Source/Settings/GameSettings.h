@@ -12,6 +12,11 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
+#include <fstream>
+#include <sstream>
+#include <vector>
+#include <string>
+
 
 class KeyBinds
 {
@@ -50,6 +55,7 @@ public:
 
     // Debug options
     static const bool DEBUG_COLLISION_CIRCLES = false;
+    static const bool DEBUG_DISABLE_ART = false;
     static const bool DEBUG_INVINCIBLE = false;
 
     // Keybinds
@@ -72,7 +78,38 @@ public:
         if(DEBUG_COLLISION_CIRCLES) std::cout << "DEBUG_COLLISION_CIRCLES=TRUE" << std::endl;
         else                        std::cout << "DEBUG_COLLISION_CIRCLES=FALSE" << std::endl;
 
+        if (DEBUG_DISABLE_ART)      std::cout << "DEBUG_DISABLE_ART=TRUE" << std::endl;
+        else                        std::cout << "DEBUG_DISABLE_ART=FALSE" << std::endl;
+
         if(DEBUG_INVINCIBLE)        std::cout << "DEBUG_INVINCIBLE=TRUE" << std::endl;
         else                        std::cout << "DEBUG_INVINCIBLE=FALSE" << std::endl;
+    }
+
+    void readSettingsFile()
+    {
+        //std::ifstream file("../settings.ini");
+        //if (!file) {
+        //    std::cerr << "Failed to open the file." << std::endl;
+        //    return;
+        //}
+        //
+        //std::stringstream buffer;
+        //buffer << file.rdbuf();
+        //std::string settingsFileContents = buffer.str();
+        //file.close();
+        //
+        //std::string line;
+        //while (getline(file, line))
+        //{
+        //    std::string[] keys;
+        //
+        //    std::replace(line.begin(), line.end(), '=', ' ');
+        //    std::stringstream ss(line);
+        //
+        //    ss >> 
+        //}
+        //
+        //
+        //file.close();
     }
 };

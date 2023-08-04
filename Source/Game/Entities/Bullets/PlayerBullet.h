@@ -7,7 +7,7 @@ class PlayerBullet : public Bullet
 	const int m_renderLayer = 2;
 	std::string m_type = "PlayerBullet";
 	Vector2 m_position = Vector2(0.0f, 0.0f);
-	float m_collisionRange = 0.5;
+	float m_collisionRange = 1;
 
 	std::string m_textureName;
 	sf::Texture m_texture;

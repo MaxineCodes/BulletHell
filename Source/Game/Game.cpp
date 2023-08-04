@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "Math/GameMath.h"
 
 // Game globals
 // Accessed through GameGlobals.h
@@ -73,13 +74,13 @@ void Game::mainMenu()
 // Called before the first update
 void Game::start()
 {
+    createGameGUI();
+
     auto player = std::make_shared<Player>();
     GAME_ENTITYLIST->add(player);
 
-    const float startPositionX = static_cast<float>(GAME_SETTINGS.WINDOWWIDTH) / 2 * 1; // 2:1 ratio , middle
-    const float startPositionY = static_cast<float>(GAME_SETTINGS.WINDOWHEIGHT) / 5 * 1; // 5:1 ratio , somewhere close to the bottom
+    auto enemy1 = std::make_shared<Destroyer>(gameCoordinatesFromPercent(50, 20));
 
-    auto enemy1 = std::make_shared<Destroyer>(Vector2(startPositionX, startPositionY));
     GAME_ENTITYLIST->add(enemy1);
 
     
@@ -95,13 +96,13 @@ void Game::initializeGameloop()
     sf::Clock deltaClock;
 
     // Loop di loop
-    while (m_gameWindow->isOpen())
+    while (GAME_RENDERER->m_gameWindow_ptr->isOpen())
     {
         // Poll for game closed
-        while (m_gameWindow->pollEvent(Event))
+        while (GAME_RENDERER->m_gameWindow_ptr->pollEvent(Event))
         {
             if (Event.type == sf::Event::Closed)
-                m_gameWindow->close();
+                GAME_RENDERER->m_gameWindow_ptr->close();
         }
 
         // Calculate delta time
@@ -118,4 +119,14 @@ void Game::initializeGameloop()
         // Render
         GAME_RENDERER->render();
     }
+}
+
+void Game::createGameGUI()
+{
+    auto guiBackground = std::make_shared<UIGraphic>
+        ("GuiBackground.png", 
+        guiCoordinatesFromPercent(0, 0), 
+        (GAME_SETTINGS.WINDOWWIDTH / 2) / GAME_RESOURCEMANAGER->getTextureSize("GuiBackground.png") * GAME_SCALE);
+
+    GAME_ENTITYLIST->add(guiBackground);
 }

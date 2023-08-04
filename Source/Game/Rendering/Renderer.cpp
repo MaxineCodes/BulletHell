@@ -13,12 +13,23 @@ void Renderer::draw(sf::Sprite sprite)
 	m_gameWindow_ptr->draw(sprite);
 }
 
+void Renderer::draw(sf::CircleShape circleShape)
+{
+	m_gameWindow_ptr->draw(circleShape);
+}
+
 void Renderer::updateBackground()
 {
-	const char* backGroundTextureName = GAME_SESSIONSTATE.get()->getBackgroundTextureName();
-	m_backgroundTexture = GAME_RESOURCEMANAGER.get()->getTexture(backGroundTextureName);
-	m_backgroundSprite.setTexture(m_backgroundTexture);
-	m_backgroundSprite.setScale(GAME_SCALE * 2, GAME_SCALE * 2);
+	if (!GAME_SETTINGS.DEBUG_COLLISION_CIRCLES)
+	{
+		const char* backGroundTextureName = GAME_SESSIONSTATE.get()->getBackgroundTextureName();
+		m_backgroundTexture = GAME_RESOURCEMANAGER.get()->getTexture(backGroundTextureName);
+		m_backgroundSprite.setTexture(m_backgroundTexture);
+		m_backgroundSprite.setScale(GAME_SCALE * 2, GAME_SCALE * 2);
+	}
+
+	if (GAME_SETTINGS.DEBUG_COLLISION_CIRCLES)
+		clear(sf::Color::Black);
 }
 
 void Renderer::clear(sf::Color colour)
@@ -35,7 +46,15 @@ void Renderer::display()
 void Renderer::render()
 {
 	clear(sf::Color::Black);
-	GAME_ENTITYLIST->draw();
+
+	if (!GAME_SETTINGS.DEBUG_DISABLE_ART)
+		GAME_ENTITYLIST->draw();
+
+	if (GAME_SETTINGS.DEBUG_COLLISION_CIRCLES)
+	{
+		GAME_ENTITYLIST->drawCollisionCircles();
+	}
+
 	display();
 }
 

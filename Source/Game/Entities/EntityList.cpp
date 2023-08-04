@@ -1,4 +1,6 @@
 #include "EntityList.h"
+#include "../GameGlobals.h"
+#include <string>
 
 void EntityList::update(float deltaTime)
 {
@@ -35,6 +37,42 @@ void EntityList::draw()
     for (unsigned int i = 0; i < m_entityList.size(); i++)
     {
         m_entityList[i]->draw();
+    }
+}
+
+
+void EntityList::drawCollisionCircles()
+{
+    // draw all entities
+    for (unsigned int i = 0; i < m_entityList.size(); i++)
+    {
+        const float collisionRange = m_entityList[i]->getCollisionRange();
+        if (collisionRange != 0.0f)
+        {
+            sf::CircleShape collisionShape(0);
+            collisionShape.setRadius(collisionRange);
+
+            const float posX = m_entityList[i]->getPosition().x;
+            const float posY = m_entityList[i]->getPosition().y;
+
+            collisionShape.setOrigin(collisionRange, collisionRange);
+            collisionShape.setPosition(posX, posY);
+            collisionShape.setFillColor(sf::Color(255, 25, 25, 128));
+
+            if (m_entityList[i]->getType() == "Player")
+                collisionShape.setFillColor(sf::Color(100, 255, 100, 255));
+
+            if (m_entityList[i]->getType() == "Enemy")
+                collisionShape.setFillColor(sf::Color(255, 100, 100, 200));
+
+            if (m_entityList[i]->getType() == "PlayerBullet")
+            {
+                collisionShape.setFillColor(sf::Color(255, 255, 255, 255));
+                collisionShape.setRadius(collisionRange * 2);
+            }
+
+            GAME_RENDERER->draw(collisionShape);
+        }
     }
 }
 

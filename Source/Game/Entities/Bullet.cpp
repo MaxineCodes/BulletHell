@@ -10,6 +10,7 @@ Bullet::Bullet(Vector2 startPosition, Vector2 startDirection, float speed, float
 {
 	//std::cout << "Bullet Created" << std::endl;
 
+	m_collisionRange = m_collisionRange * GAME_SCALE;
 	m_direction = startDirection;
 	m_speed = speed;
 	m_size = size;
@@ -30,7 +31,7 @@ void Bullet::update(float deltaTime)
 	m_position.y = m_bulletSprite.getPosition().y;
 	
 	// Normalize direction vector
-	m_direction = Normalize(m_direction);
+	m_direction = normalize(m_direction);
 	
 	// Move bullet to direction
 	m_bulletSprite.move((m_direction.x * m_speed) * deltaTime, (m_direction.y * m_speed) * deltaTime);
@@ -80,7 +81,7 @@ bool Bullet::shouldBeDestroyed()
 	//extern int GAME_WINDOWWIDTH;
 	//extern int GAME_WINDOWHEIGHT;
 
-	if (!IsInGameArea(m_position, GAME_SETTINGS.GAME_WINDOWWIDTH, GAME_SETTINGS.GAME_WINDOWHEIGHT))
+	if (!isInGameArea(m_position, GAME_SETTINGS.GAME_WINDOWWIDTH, GAME_SETTINGS.GAME_WINDOWHEIGHT))
 		return true;
 
 	return false;

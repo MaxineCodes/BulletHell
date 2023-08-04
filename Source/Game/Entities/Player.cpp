@@ -18,26 +18,27 @@ Player::Player()
 // Initialize
 void Player::init()
 {
+	m_collisionRange = m_collisionRange * GAME_SCALE;
+
 	const int playerTextureSize = GAME_RESOURCEMANAGER->getTextureSize(m_playerTexture);
 	const int hitboxTextureSize = GAME_RESOURCEMANAGER->getTextureSize(m_hitboxTexture);
 
 	// Set player sprite scale and set origin aka pivot to center
-	m_playerSprite.setOrigin(float(playerTextureSize / 2), float(playerTextureSize / 2 + playerTextureSize / 6));
+	m_playerSprite.setOrigin(float(playerTextureSize / 2), float(playerTextureSize / 2));
 	m_playerSprite.setScale(m_size * GAME_SCALE, m_size * GAME_SCALE);
 
-	m_hitboxSprite.setOrigin(float(hitboxTextureSize / 2), float(hitboxTextureSize / 2 + hitboxTextureSize / 24));
-	m_hitboxSprite.setScale(m_collisionRange*2 * GAME_SCALE, m_collisionRange*2 * GAME_SCALE);
+	m_hitboxSprite.setOrigin(float(hitboxTextureSize / 2), float(hitboxTextureSize / 2));
+	m_hitboxSprite.setScale(m_collisionRange * 0.75 * GAME_SCALE, m_collisionRange * 0.75 * GAME_SCALE);
 
 	// Set starting position of player
-	const float startPositionX = static_cast<float>(GAME_SETTINGS.GAME_WINDOWWIDTH)  / 2 * 1; // 2:1 ratio
-	const float startPositionY = static_cast<float>(GAME_SETTINGS.GAME_WINDOWHEIGHT) / 5 * 4; // 5:4 ratio
-	m_playerSprite.setPosition(startPositionX, startPositionY);
-	m_hitboxSprite.setPosition(startPositionX, startPositionY);
+	const Vector2 startPosition = gameCoordinatesFromPercent(50, 80);
+	m_playerSprite.setPosition(startPosition.x, startPosition.y);
+	m_hitboxSprite.setPosition(startPosition.x, startPosition.y);
 }
 
 sf::Sprite Player::getSprite()
 {
-	return m_playerSprite;
+	return m_hitboxSprite;
 }
 
 std::string Player::getType()
@@ -178,7 +179,7 @@ void Player::movement(float SPEED, int WINDOWWIDTH, int WINDOWHEIGHT, float delt
 		m_direction.y =	 1.0f; }
 
 	// Normalize direction vector
-	m_direction = Normalize(m_direction);
+	m_direction = normalize(m_direction);
 
 	// Move player to direction vector
 	m_playerSprite.move((m_direction.x * SPEED) * deltaTime, (m_direction.y * SPEED) * deltaTime);

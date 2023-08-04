@@ -71,6 +71,7 @@
 #include "GameGlobals.h"
 
 #include "Entities/Enemies/Destroyer.h"
+#include "Entities/UI/UIGraphic.h"
 
 
 // Game instance
@@ -86,4 +87,5 @@ private:
     void mainMenu();
     void start();
     void initializeGameloop();
+    void createGameGUI();
 };

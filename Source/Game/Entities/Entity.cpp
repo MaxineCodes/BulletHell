@@ -2,12 +2,12 @@
 
 void Entity::update(float deltaTime)
 {
-	std::cout << "Entity::update()" << std::endl;
+	//std::cout << "Entity::update()" << std::endl;
 }
 
 void Entity::lateUpdate(float deltaTime)
 {
-	std::cout << "Entity::lateUpdate()" << std::endl;
+	//std::cout << "Entity::lateUpdate()" << std::endl;
 }
 
 void Entity::draw()

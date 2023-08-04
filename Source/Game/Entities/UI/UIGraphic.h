@@ -7,7 +7,7 @@
 class UIGraphic : public Entity
 {
 private:
-	const int m_renderLayer = 0;
+	const int m_renderLayer = 8;
 
 	sf::Sprite m_sprite;
 	sf::Texture m_texture;

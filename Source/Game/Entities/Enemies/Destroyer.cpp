@@ -7,12 +7,13 @@
 Destroyer::Destroyer(Vector2 position)
 {
 	m_position = position;
+	m_collisionRange = m_collisionRange * GAME_SCALE;
 
 	m_texture = GAME_RESOURCEMANAGER->getTexture("Flandre.png");
 	m_sprite.setTexture(m_texture);
 
 	const float textureSize = float(getTextureDimensions(m_texture)[0]);
-	m_sprite.setOrigin(textureSize / 2, textureSize / 2 + textureSize / 6);
+	m_sprite.setOrigin(textureSize / 2, textureSize / 2);
 	m_sprite.setScale(m_size * GAME_SCALE, m_size * GAME_SCALE);
 	m_sprite.setPosition(position.x, position.y);
 }

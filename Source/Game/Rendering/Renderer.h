@@ -35,6 +35,7 @@ class Renderer
 {
 private:
 	const int m_layerCount = 7;
+public:
 	std::shared_ptr<sf::RenderWindow> m_gameWindow_ptr;
 
 	//std::unique_ptr<CanvasRenderer>
@@ -55,6 +56,7 @@ public:
 	void updateBackground();
 	void clear(sf::Color colour);
 	void draw(sf::Sprite sprite);
+	void draw(sf::CircleShape circleShape);
 	void display();
 
 
